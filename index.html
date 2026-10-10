@@ -1,0 +1,819 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<title>JOHNS ICE CREAM TOKYO</title>
+<meta name="description" content="JOHNS ICE CREAM TOKYO — Nakameguro / SHIBUYA109. Stack your colors before you order.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: monochrome gallery — white paper, black ink, a black chocolate drip band; the only color on the page is the ice cream itself. */
+:root{
+  --milk:#ffffff; --card:#f4f4f2; --ink:#111111; --mute:#727272; --line:#e2e2e0;
+  --cherry:#111111; --butter:#111111; --mint:#ffffff; --stickInk:#ffffff;
+  --stage:#f4f4f2; --stageDot:#e4e4e1;
+  --cone:#1d1b1a; --coneHi:#363230; --coneLine:#55504b;
+  --cup:#141414; --cupLine:#141414; --cupLip:#f2f2f2; --cupIn:#2a2a2a;
+  --band:#111111; --onBand:#ffffff; --onCherry:#ffffff;
+  --f-disp:"Fraunces","Zen Maru Gothic","Hiragino Maru Gothic ProN",Georgia,serif;
+  --f-body:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --milk:#111111; --card:#1c1c1c; --ink:#f2f2f2; --mute:#9c9c9c; --line:#2e2e2e;
+  --cherry:#f2f2f2; --butter:#f2f2f2; --mint:#111111; --stickInk:#111111;
+  --stage:#1a1a1a; --stageDot:#272727;
+  --cone:#0c0c0c; --coneHi:#2a2827; --coneLine:#6a645e;
+  --cup:#141414; --cupLine:#4a4a4a; --cupLip:#e8e8e8; --cupIn:#0e0e0e;
+  --band:#ececec; --onBand:#111111; --onCherry:#111111; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --milk:#111111; --card:#1c1c1c; --ink:#f2f2f2; --mute:#9c9c9c; --line:#2e2e2e;
+  --cherry:#f2f2f2; --butter:#f2f2f2; --mint:#111111; --stickInk:#111111;
+  --stage:#1a1a1a; --stageDot:#272727;
+  --cone:#0c0c0c; --coneHi:#2a2827; --coneLine:#6a645e;
+  --cup:#141414; --cupLine:#4a4a4a; --cupLip:#e8e8e8; --cupIn:#0e0e0e;
+  --band:#ececec; --onBand:#111111; --onCherry:#111111; color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--milk);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.85;-webkit-text-size-adjust:100%;overflow-x:hidden}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2.5px solid var(--cherry);outline-offset:3px}
+.disp{font-family:var(--f-disp);font-variation-settings:"SOFT" 100,"WONK" 0;font-optical-sizing:auto}
+.it{font-family:var(--f-disp);font-style:italic;font-variation-settings:"SOFT" 100,"WONK" 1}
+.num{font-family:var(--f-disp);font-variation-settings:"SOFT" 100;font-variant-numeric:lining-nums proportional-nums}
+.sm{font-size:12.5px;color:var(--mute);letter-spacing:.04em}
+
+/* header */
+header.top{position:relative;z-index:2;background:var(--band);color:var(--onBand)}
+.bar .it{font-size:16px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.mark{display:block;height:20px;aspect-ratio:10.5;color:var(--ink)}
+nav.links{display:flex;gap:6px;align-items:center}
+nav.links a{white-space:nowrap;text-decoration:none;font-size:13.5px;font-weight:500;padding:5px 12px;border-radius:99px}
+nav.links a:hover{background:color-mix(in srgb,var(--onBand) 14%,transparent)}
+.lang{display:flex;background:color-mix(in srgb,var(--onBand) 14%,transparent);border-radius:99px;padding:3px;margin-left:6px}
+.lang button{background:none;border:0;padding:3px 11px;font-size:12px;font-weight:700;cursor:pointer;color:var(--onBand);opacity:.7;border-radius:99px}
+.lang button[aria-pressed="true"]{background:var(--onBand);color:var(--band);opacity:1}
+@media(max-width:720px){nav.links a.hide-sm{display:none}}
+@media(max-width:480px){nav.links a{display:none}.bar .it{font-size:14px}}
+
+/* hero */
+.hero{padding-block:clamp(24px,5vw,56px) clamp(28px,4vw,44px);display:grid;gap:18px;position:relative}
+.logoRow{display:flex;align-items:center;gap:clamp(10px,2vw,22px);max-width:900px}
+.herologo{display:block;flex:1;min-width:0;max-width:760px;aspect-ratio:10.5;color:var(--ink)}
+.sticker{flex:none;width:96px;height:96px;border-radius:50%;background:var(--butter);color:var(--stickInk);display:grid;place-items:center;text-align:center;line-height:1.15;transform:rotate(12deg);}
+.sticker b{display:block;font-family:var(--f-disp);font-style:italic;font-size:22px;font-variation-settings:"SOFT" 100,"WONK" 1}
+.sticker span{font-size:10.5px;font-weight:700}
+@media(max-width:600px){.sticker{width:66px;height:66px}.sticker b{font-size:15px}.sticker span{font-size:8.5px}}
+.hero h1{margin:6px 0 0;font-weight:900;font-size:clamp(24px,6.6vw,62px);line-height:1.22;letter-spacing:.01em;text-wrap:balance;max-width:16em}
+.hero h1 em{font-style:normal;color:var(--ink);text-decoration:none}
+html[lang="en"] .hero h1{font-family:var(--f-disp);font-style:italic;font-weight:400;font-variation-settings:"SOFT" 100,"WONK" 1;line-height:1.05;letter-spacing:-.01em}
+.hero p{margin:0;max-width:34em;color:var(--mute)}
+.by{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.by .it{font-size:17px}
+
+.drip{display:block;width:100%;height:44px;margin-top:-1px}
+.drip.hd{height:52px;transform-origin:top;animation:dripIn 1.8s cubic-bezier(.25,.7,.2,1) .15s both}
+@keyframes dripIn{from{transform:scaleY(.2)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){.drip.hd{animation:none}}
+.shopsw{display:inline-flex;flex-wrap:wrap;background:var(--card);border-radius:99px;padding:4px;gap:2px;width:fit-content}
+.shopsw button{border:0;background:none;padding:8px 18px;border-radius:99px;cursor:pointer;font-weight:700;font-size:14px;display:flex;gap:8px;align-items:baseline;white-space:nowrap}
+.shopsw button small{font-family:var(--f-disp);font-style:italic;font-weight:400;font-size:13px;opacity:.6;font-variation-settings:"SOFT" 100,"WONK" 1}
+.shopsw button[aria-pressed="true"]{background:var(--ink);color:var(--milk)}
+.shopsw button:not([aria-pressed="true"]):hover{background:var(--milk)}
+
+/* scroll reveal: only things below the first screen start hidden */
+.rv{opacity:0;transform:translateY(28px);transition:opacity 1s,transform 1s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+/* lab */
+.lab{display:grid;gap:clamp(22px,3vw,44px);padding-block:8px 72px;grid-template-columns:1fr}
+@media(min-width:920px){.lab{grid-template-columns:minmax(360px,5fr) 6fr;align-items:start}}
+.stagebox{background-color:var(--stage);background-image:radial-gradient(var(--stageDot) 2.4px,transparent 2.6px);background-size:22px 22px;border-radius:36px;position:relative;overflow:hidden}
+@media(min-width:920px){.stagebox{position:sticky;top:calc(env(safe-area-inset-top,0px) + 70px)}}
+#stage{display:block;width:100%;height:auto;max-height:min(76vh,660px);margin:0 auto;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+#stage.drag{cursor:grabbing}
+#sway{transition:transform .7s cubic-bezier(.3,1.7,.5,1)}
+#stage.drag #sway{transition:none}
+.stagehead{position:absolute;inset:0 0 auto 0;z-index:2;pointer-events:none}
+.stagehead .row{background:var(--band);color:var(--onBand);display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 20px 2px}
+.stagehead .it{font-size:16px}
+.stagehead .drip{height:34px}
+.pricetag{background:var(--onBand);color:var(--band);border-radius:99px;padding:4px 14px;font-size:20px;transform:rotate(4deg)}
+.stagecap{position:absolute;inset:auto 18px 14px 18px;display:flex;justify-content:space-between;gap:10px;pointer-events:none;font-size:12px;color:var(--mute)}
+.dropin{animation:drop .7s cubic-bezier(.2,.8,.3,1.25) both}
+@keyframes drop{0%{transform:translateY(-220px);opacity:0}55%{opacity:1;transform:translateY(8px) scaleY(.94)}75%{transform:translateY(-5px)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){.dropin{animation:none}#sway{transition:none}}
+
+.ctrl{display:grid;gap:34px;min-width:0}
+.blk{display:grid;gap:14px;min-width:0}
+.blkhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.step{flex:none;width:32px;height:32px;border-radius:50%;background:var(--cherry);color:var(--onCherry);display:grid;place-items:center;font-family:var(--f-disp);font-style:italic;font-size:18px;font-variation-settings:"SOFT" 100,"WONK" 1;line-height:1}
+.blkhead h2{margin:0;font-size:21px;font-weight:700;line-height:1.3}
+html[lang="en"] .blkhead h2{font-family:var(--f-disp);font-weight:500;font-size:24px;font-variation-settings:"SOFT" 100}
+.blkhead .sm{margin-left:auto}
+
+.opts{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(96px,1fr))}
+@media(max-width:560px){.opt{flex-direction:column;align-items:flex-start;gap:4px;padding:10px 12px}}
+.opt{display:flex;align-items:center;gap:10px;background:var(--card);border:2px solid transparent;border-radius:22px;padding:10px 14px 10px 10px;cursor:pointer;text-align:left;transition:transform .15s}
+.opt:hover{transform:translateY(-2px)}
+.opt svg{flex:none;width:34px;height:42px}
+.opt b{display:block;font-weight:700;font-size:14px;line-height:1.3}
+.opt small{display:block;font-size:16px;line-height:1.2}
+.opt small.sm{font-size:12px}
+.opt[aria-pressed="true"]{border-color:var(--ink)}
+
+.presetbox{display:grid;gap:8px}
+.plabel{margin:0;font-size:13px;font-weight:700;color:var(--mute);letter-spacing:.04em}
+.presets{display:flex;flex-wrap:wrap;gap:8px}
+.presets button{display:flex;align-items:center;gap:8px;background:var(--card);border:0;border-radius:99px;padding:5px 14px 5px 6px;cursor:pointer;font-size:13px;font-weight:500}
+.presets button:hover{background:var(--ink);color:var(--milk)}
+.dots{display:flex}
+.dots i{width:18px;height:18px;border-radius:50%;margin-left:-6px;border:2px solid var(--card)}
+.dots i:first-child{margin-left:0}
+.presets button:hover .dots i{border-color:var(--ink)}
+
+.slots{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.slot{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:10px;background:var(--card);border:2px solid transparent;border-radius:20px;padding:6px 8px 6px 14px;cursor:pointer}
+.slot.act{border-color:var(--ink)}
+.slot .pos{display:block;font-size:11.5px;font-weight:700;color:var(--mute);line-height:1.2;letter-spacing:.06em}
+.slot .sw{width:44px;height:40px;display:grid;place-items:center}
+.slot .sw svg{width:44px;height:40px}
+.slot .sw .empty{width:34px;height:34px;border-radius:50%;border:2px dashed var(--mute);opacity:.6}
+.slot .nm{min-width:0;line-height:1.3}
+.slot .nm b{display:block;font-family:var(--f-disp);font-style:italic;font-weight:400;font-size:19px;font-variation-settings:"SOFT" 100,"WONK" 1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.slot .nm small{color:var(--mute);font-size:12px}
+.slot .ops{display:flex;gap:2px}
+.slot .ops button{width:34px;height:34px;border:0;background:none;border-radius:50%;cursor:pointer;color:var(--mute);font-size:15px;line-height:1}
+.slot .ops button:hover:not(:disabled){background:var(--milk);color:var(--ink)}
+.slot .ops button:disabled{opacity:.22;cursor:default}
+
+.fls{display:grid;gap:6px 8px;grid-template-columns:repeat(auto-fill,minmax(128px,1fr))}
+.fl{position:relative;background:none;border:0;border-radius:24px;padding:8px 8px 12px;cursor:pointer;display:grid;justify-items:center;text-align:center;gap:2px;line-height:1.3}
+.fl:hover{background:var(--card)}
+.fl svg{width:92px;height:84px;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.fl:hover svg{transform:translateY(-5px) rotate(-5deg)}
+.fl b{font-family:var(--f-disp);font-style:italic;font-weight:400;font-size:16.5px;font-variation-settings:"SOFT" 100,"WONK" 1}
+.fl small{font-size:11.5px;color:var(--mute)}
+.fl .pr{margin-top:4px;font-size:12px;font-weight:700;padding:1px 9px;border-radius:99px;background:var(--card)}
+.fl:hover .pr{background:var(--milk)}
+.fl .pr.vg{background:none;border:1.5px solid var(--ink)}
+.fl .heart{position:absolute;top:6px;right:16px;width:24px;height:24px;border-radius:50%;background:var(--cherry);color:var(--onCherry);font-size:12px;display:grid;place-items:center}
+.fl.used{background:var(--card)}
+@media (prefers-reduced-motion:reduce){.fl svg,.opt{transition:none}.fl:hover svg{transform:none}}
+
+.tops{display:flex;flex-wrap:wrap;gap:8px}
+.tops button{display:flex;align-items:center;gap:8px;background:var(--card);border:2px solid transparent;border-radius:99px;padding:6px 16px 6px 8px;cursor:pointer;font-size:13.5px;font-weight:500}
+.tops button svg{width:24px;height:24px}
+.tops button[aria-pressed="true"]{border-color:var(--ink)}
+.note{margin:0;font-size:12.5px;color:var(--mute)}
+
+.sum{background:var(--band);color:var(--onBand);border-radius:30px;padding:20px 22px 18px;display:grid;gap:10px}
+.sum .lines{display:grid;gap:2px;font-size:13px;opacity:.85}
+.sum .lines div{display:flex;justify-content:space-between;gap:12px}
+.sum .lines span:last-child{font-family:var(--f-disp);font-variation-settings:"SOFT" 100}
+.sum .total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-top:1.5px dashed color-mix(in srgb,var(--onBand) 35%,transparent);padding-top:10px}
+.sum .total b{font-family:var(--f-disp);font-weight:500;font-size:38px;line-height:1;font-variation-settings:"SOFT" 100}
+.cta{appearance:none;border:0;background:var(--onBand);color:var(--band);font-weight:700;font-size:16px;padding:15px 20px;border-radius:99px;cursor:pointer;transition:transform .15s}
+.cta:not(:disabled):hover{transform:translateY(-2px) rotate(-.6deg)}
+.cta:disabled{opacity:.4;cursor:not-allowed}
+.sum .warn{font-size:12.5px;opacity:.75;margin:0;text-align:center}
+.sum .warn.need{opacity:1;font-weight:700}
+
+/* sections */
+section.sec{padding-block:64px}
+.sechead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:30px}
+.sechead h2{margin:0;font-family:var(--f-disp);font-style:italic;font-weight:400;font-size:clamp(46px,7vw,84px);line-height:.9;font-variation-settings:"SOFT" 100,"WONK" 1}
+.sechead .sm{font-weight:700}
+.sechead .right{margin-left:auto}
+.cards{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.box{background:var(--card);border-radius:28px;padding:24px 24px 20px;display:grid;gap:12px;align-content:start}
+.box h3{margin:0;font-family:var(--f-disp);font-weight:500;font-size:26px;line-height:1.1;font-variation-settings:"SOFT" 100}
+.rows{display:grid;margin:0}
+.rows div{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-block:9px;border-bottom:1.5px dotted var(--line)}
+.rows div:last-child{border-bottom:0}
+.rows dt{margin:0;line-height:1.4}
+.rows dd{margin:0;white-space:nowrap;font-family:var(--f-disp);font-size:18px;font-variation-settings:"SOFT" 100;font-variant-numeric:lining-nums}
+.rows small{display:block;color:var(--mute);font-size:12px}
+.shopnm{font-family:var(--f-disp);font-style:italic;font-weight:400;font-size:44px;line-height:1;margin:0;font-variation-settings:"SOFT" 100,"WONK" 1}
+.box dl.info{margin:0;display:grid;gap:10px}
+.info dt{font-size:12px;font-weight:700;color:var(--mute);letter-spacing:.06em}
+.info dd{margin:0}
+.lnk{display:inline-flex;gap:6px;align-items:center;text-decoration:none;background:var(--ink);color:var(--milk);padding:9px 18px;border-radius:99px;font-size:13.5px;font-weight:700;width:fit-content}
+.lnk:hover{opacity:.8}
+.lnk.alt{background:none;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.lnks{display:flex;flex-wrap:wrap;gap:8px}
+.flist{list-style:none;margin:0;padding:0;display:grid;gap:4px 12px;grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.flist li{display:flex;align-items:center;gap:8px;line-height:1.3;min-width:0}
+.flist svg{flex:none;width:38px;height:34px}
+.flist b{display:block;font-family:var(--f-disp);font-style:italic;font-weight:400;font-size:16px;font-variation-settings:"SOFT" 100,"WONK" 1}
+.flist small{color:var(--mute);font-size:11.5px}
+.rules{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:4px;font-size:12.5px;line-height:1.7;color:var(--mute);max-width:46em}
+.rules li{padding-left:1.1em;text-indent:-1.1em}
+.rules li::before{content:"* "}
+
+footer{position:relative;background:var(--band);color:var(--onBand);padding-block:12px 48px}
+footer .in{display:grid;gap:18px}
+footer .big{display:block;width:min(100%,900px);aspect-ratio:10.5;color:var(--onBand)}
+footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;opacity:.8}
+.drip.up{transform:scaleY(-1);margin-top:0;margin-bottom:-1px}
+
+/* order card */
+.ov{display:flex;justify-content:center;scroll-margin-top:24px}
+.card{width:min(100%,420px);background:var(--card);color:var(--ink);border-radius:30px;overflow:hidden;box-shadow:inset 0 0 0 2px var(--ink)}
+.card .vis{background-color:var(--stage);background-image:radial-gradient(var(--stageDot) 2.4px,transparent 2.6px);background-size:22px 22px;display:flex;justify-content:center;position:relative}
+.card .vis svg{width:66%;height:auto;display:block}
+.card .vis .no{position:absolute;left:16px;top:12px;font-size:16px}
+.card .vis .hd{position:absolute;right:14px;top:12px;background:var(--butter);color:var(--stickInk);border-radius:99px;padding:2px 12px;font-size:12px;font-weight:700;transform:rotate(4deg)}
+.card .bd{padding:16px 20px 4px;display:grid;gap:10px;border-top:2px dashed var(--line)}
+.card .bd ol{margin:0;padding:0;list-style:none;display:grid;gap:4px}
+.card .bd li{display:flex;justify-content:space-between;gap:10px;font-size:14px}
+.card .bd li span:last-child{font-family:var(--f-disp);color:var(--mute);white-space:nowrap;font-variation-settings:"SOFT" 100}
+.card .tt{display:flex;justify-content:space-between;align-items:baseline;border-top:1.5px dotted var(--line);padding-top:8px}
+.card .tt b{font-family:var(--f-disp);font-size:30px;font-weight:500;font-variation-settings:"SOFT" 100}
+.card .ft{padding:10px 20px 20px;display:grid;gap:12px}
+.card .ft p{margin:0;font-size:12px;color:var(--mute)}
+.card .btns{display:flex;gap:8px}
+.card .btns button{flex:1;border:0;background:var(--milk);border-radius:99px;padding:11px;cursor:pointer;font-size:13.5px;font-weight:700}
+.card .btns button.pri{background:var(--ink);color:var(--milk)}
+.ocmsg{margin:0;font-size:12.5px;font-weight:700;color:var(--ink)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="jic" viewBox="-4 71.2 605.6 57.7" fill="currentColor"><g transform="translate(-89.9 61.7)"><path d="M 110.6 42.7 C 110.4 41.4 110.4 40.5 110.3 39.5 C 110.1 37.2 110.4 35 111.3 32.8 C 111.5 32.4 111.6 31.9 111.8 31.4 C 111.9 30.9 111.8 30.5 111.4 30.3 C 111 30 110.6 30.2 110.3 30.4 C 109.5 31.1 108.5 31.3 107.4 31.1 C 106.4 31 105.5 31.3 104.7 32.1 C 104.4 32.4 104 32.7 103.7 33.1 C 102.3 34.4 100.6 34.7 98.8 34.4 C 95.2 33.8 92.8 30.8 92.9 27.2 C 93 25.6 93.6 24.3 94.5 23 C 95.5 21.8 96.7 20.8 98.1 20 C 98.7 19.6 99.2 19.1 99.5 18.5 C 100.7 16.6 102.3 15.5 104.5 15.2 C 105.5 15.1 106.5 15.3 107.4 15.6 C 108.4 15.9 109.3 16.4 110.2 16.7 C 110.7 17 111.2 17.2 111.8 17.5 C 113 18.1 114.2 18 115.4 17.5 C 116.2 17.1 117 16.7 117.8 16.3 C 118.7 15.8 119.7 15.4 120.8 15.3 C 122.2 15.1 123.4 15.4 124.5 16.3 C 126.9 18.3 126.9 21.5 126 23.5 C 125.6 24.3 125 25 124.5 25.7 C 124.2 26.1 123.8 26.5 123.4 26.9 C 122.3 28.1 121.9 29.5 122.1 31.1 C 122.3 32.6 122.5 33.9 123.1 35.2 C 123.6 36.6 124.2 37.9 124.7 39.2 C 125.9 41.9 125.9 44.6 124.3 47.3 C 123.5 48.6 122.6 49.9 121.5 51 C 120.1 52.3 119 53.7 118 55.2 C 117 56.7 115.9 58 114.5 59 C 112 60.9 109.3 61.8 106.2 61.2 C 105.3 61.1 104.4 61 103.5 60.9 C 102.4 60.6 101.4 60.1 100.6 59.3 C 99.6 58.4 98.4 57.7 97.2 57.1 C 90 53.8 89.9 45.5 93.6 41.2 C 94.8 39.9 96.3 39.2 98.1 38.8 C 99.9 38.5 103.1 40.2 103.9 41.8 C 104.4 42.8 104.6 43.8 104.3 44.8 C 104.2 45.3 104 45.9 103.9 46.4 C 103.3 47.7 104.9 49.4 106.4 49 C 108.4 48.4 109.7 47.2 110.2 45.3 C 110.5 44.3 110.5 43.3 110.6 42.7 "/></g><g transform="translate(-88.3 61.7)"><path d="M 142.9 44.4 C 143 45 143 45.4 143.1 45.7 C 143.8 48.8 146.7 49.9 149.2 47.7 C 150.9 46.2 151.5 44.5 151 42.3 C 150.7 40.9 150.7 39.5 151 38.1 C 151.1 37.7 151.2 37.2 151.2 36.8 C 151.3 35.6 150.7 34.9 149.5 34.8 C 149.2 34.8 148.8 34.9 148.5 34.9 C 147.8 35 147.1 35.1 146.4 35 C 145.4 34.9 145.1 35 144.9 35.9 C 144.6 37.1 144.3 38.2 144.2 39.4 C 144.1 40.5 143.9 41.5 143.5 42.6 C 143.2 43.2 143 43.9 142.9 44.4 M 127.4 41.4 C 127.6 38.1 128 34.9 129.2 31.8 C 129.6 30.7 129.9 29.7 129.9 28.6 C 130.2 25.9 131.2 23.6 133.6 22.2 C 134.2 21.9 134.9 21.6 135.5 21.4 C 136.6 21 137.5 20.5 138.3 19.6 C 140.2 17.6 142.6 16.4 145 15.4 C 149.7 13.5 154.5 14.8 158 18.6 C 159.5 20.2 160.6 22 161.3 24 C 161.9 25.4 162.5 26.6 163.4 27.7 C 166.8 31.7 167 36.2 165.4 40.9 C 165.3 41.3 165.2 41.7 165 42 C 164.2 43.7 163.6 45.4 163.3 47.1 C 162.6 50.4 160.8 52.9 157.9 54.7 C 156.6 55.5 155.4 56.6 154.4 57.8 C 152.6 59.9 150.4 61.4 147.7 61.9 C 146.1 62.2 144.6 62.1 143.1 61.7 C 141.8 61.4 140.6 61.1 139.3 60.8 C 137.7 60.5 136.3 59.6 135 58.6 C 131.2 55.3 129 51.1 128 46.3 C 127.7 44.7 127.6 43 127.4 41.4 "/></g><g transform="translate(-89.2 61.7)"><path d="M 195 45.4 C 194.7 45.6 194.4 45.8 194.1 46 C 193 46.8 191.7 47.3 190.4 47.4 C 189.7 47.5 189 47.3 188.3 47.2 C 188 47.2 187.8 47 187.5 47 C 186.4 46.7 185.7 47.2 185.7 48.4 C 185.7 48.9 185.8 49.3 185.9 49.8 C 186.2 50.9 186.5 52 186.8 53.1 C 187.4 55.8 186.6 58.1 184.6 59.8 C 181.9 62.2 178.7 63.1 175.1 62.2 C 171.1 61.2 170.1 57.6 170.5 54.9 C 170.7 53.9 171 52.8 171.3 51.8 C 171.6 50.9 171.6 49.9 171.4 48.9 C 171.2 47.5 170.9 46.1 170.8 44.7 C 170.6 42.3 171.2 40.1 171.8 37.8 C 172.3 36.2 172.8 34.7 173.1 33.1 C 173.3 32 173.3 31 173.2 29.9 C 173.2 29.1 172.8 28.4 172.6 27.6 C 172.3 26.1 172 24.5 172.3 22.9 C 172.5 21.6 173 20.5 173.8 19.6 C 175.7 17.3 178.2 15.9 181.2 15.8 C 183.4 15.7 185.1 16.7 186.4 18.5 C 188 20.8 188.5 23.3 187.4 26 C 187.3 26.3 187.1 26.7 187 27 C 186.5 28 186.4 29.1 186.7 30.2 C 186.8 30.7 186.8 31.3 186.8 31.9 C 186.8 34.7 189.5 35.7 191.6 35 C 194 34.2 195.2 31.6 194.3 29.2 C 194 28.6 193.7 28.1 193.4 27.6 C 192.3 25.6 192.3 23.6 193.3 21.6 C 195.2 17.6 198.5 15.1 202.8 14.3 C 206.2 13.6 209.1 14.7 210.6 18 C 211.3 19.6 211.6 21.3 211.3 23.1 C 211.1 24.5 210.8 25.8 210.4 27.2 C 210 28.4 209.6 29.5 209.2 30.6 C 208.8 31.7 208.8 32.8 209 33.9 C 209.4 35.6 209.7 37.4 210 39.2 C 210.4 42.1 210.2 44.9 209.3 47.7 C 208.6 49.9 208.2 52.1 208.1 54.3 C 208.1 58.1 205 61.3 201.1 61.8 C 198.3 62.1 196.2 61.2 194.7 58.8 C 194.1 57.7 193.7 56.5 193.5 55.3 C 193.3 53.6 193.5 51.9 194.1 50.2 C 194.5 49 194.8 47.7 195.2 46.5 C 195.2 46.2 195.2 45.9 195.2 45.6 C 195.1 45.5 195.1 45.5 195 45.4 "/></g><g transform="translate(-89.4 61.7)"><path d="M 242.1 36.2 C 242.7 35.9 242.6 35.4 242.6 34.9 C 242.6 33.8 242.3 32.7 241.9 31.6 C 241.5 30.9 241.2 30.2 240.9 29.4 C 239.5 26.3 239.5 23.3 241 20.2 C 241.9 18.4 243 16.8 244.6 15.5 C 246.6 14 248.9 13.5 251.4 13.9 C 253.2 14.3 254.5 15.4 255.4 17 C 256.5 19.1 256.7 21.2 256.5 23.5 C 256.3 25.7 255.6 27.8 254.8 29.9 C 254.4 30.9 254 31.8 253.6 32.8 C 253.3 33.8 253.1 34.8 253.2 35.9 C 253.3 37.7 253.1 39.5 252.5 41.3 C 252.3 41.8 252.1 42.2 252 42.7 C 251.5 44.1 251.6 45.5 252.2 46.8 C 252.8 48.3 253.4 49.7 253.7 51.2 C 254.3 53.5 254 55.8 252.9 57.9 C 251.4 60.6 249.1 61.9 246.2 61.8 C 243.5 61.7 241.3 60.3 239.8 58 C 239.5 57.5 239.2 57 238.9 56.5 C 238.3 55.2 237.5 54.2 236.4 53.4 C 235.9 53 235.4 52.6 235 52.2 C 232.7 50.4 231.6 48 231.1 45.2 C 231.1 44.9 231 44.5 230.9 44.1 C 230.8 43.7 230.6 43.3 230.1 43.2 C 229.4 43.7 229.2 44.3 229 45.1 C 228.6 46.7 229 48.3 229.5 49.9 C 229.6 50.4 229.8 50.9 230 51.3 C 231.4 54.8 230.4 59.2 226.6 61.7 C 224.7 62.9 222.7 63.1 220.6 62.4 C 217.2 61.2 214 57.3 214.4 53.2 C 214.5 51.8 214.8 50.3 215.5 49.1 C 217.1 46.3 217.9 43.4 217.9 40.3 C 217.9 39.2 218.2 38 218.5 37 C 219 35.1 218.8 33.3 217.9 31.6 C 217.5 31 217.1 30.3 216.8 29.6 C 216.3 28.5 215.8 27.5 215.5 26.4 C 214.9 24.8 215.2 23.2 216 21.8 C 217.5 19 219.9 17.3 222.9 16.4 C 223.7 16.1 224.5 15.9 225.4 15.8 C 228.1 15.7 230 17 231.3 19.3 C 231.9 20.3 232.2 21.6 232.7 22.8 C 232.9 23.5 233.1 24.3 233.4 25.1 C 233.7 26.3 234.3 27.4 235.2 28.2 C 237.1 29.9 238.5 31.8 239.8 33.9 C 240.2 34.6 240.7 35.1 241.2 35.6 C 241.4 35.9 241.8 36.1 242.1 36.2 "/></g><g transform="translate(-88.6 61.7)"><path d="M 273.9 13.9 C 275.7 14.1 277.9 14.4 280 14.7 C 281.5 14.9 283.1 15 284.6 15.4 C 289 16.5 291.9 19.2 293.1 23.6 C 293.6 25.7 293.2 27.7 292.1 29.6 C 291 31.6 289 33.2 285.6 32.4 C 284 32.1 282.5 31.3 281.3 30.2 C 280.7 29.6 280.1 29 279.5 28.5 C 278.3 27.5 276.9 27.6 275.9 28.8 C 275.1 29.9 274.2 30.9 273.1 31.6 C 272.3 32.2 272.3 32.9 272.9 33.6 C 273.9 34.6 275 34.9 276.4 34.6 C 277.6 34.2 278.9 33.8 280.2 33.7 C 284 33.2 287.4 34.3 290.2 36.9 C 291.9 38.5 293.1 40.3 293.6 42.6 C 294.3 46.3 293.4 49.6 290.8 52.3 C 290.1 53.1 289.2 53.8 288.4 54.5 C 286.9 55.5 285.7 56.6 284.6 58 C 284.2 58.6 283.7 59.1 283.3 59.5 C 281.4 61.3 279.2 62.3 276.8 62.6 C 273.5 63 270.7 62.1 268.2 60 C 267.1 59 265.9 58.3 264.4 58.1 C 263.7 58 263.1 57.7 262.4 57.5 C 261.1 57.1 260.3 56.3 259.7 55.2 C 258 52.2 258 49.2 259.8 46.3 C 261.3 43.9 264.2 43 266.8 44 C 268.1 44.5 269.3 45.3 270.3 46.2 C 271 46.7 271.6 47.2 272.3 47.6 C 274.1 48.5 276 48 277.1 46.4 C 277.4 46.1 277.6 45.7 277.8 45.4 C 278.5 43.9 277.6 42.4 276.1 42.4 C 275 42.3 273.9 42.4 272.9 42.6 C 271.2 42.9 269.6 42.9 267.9 42.4 C 267.1 42.2 266.3 41.8 265.6 41.2 C 265.3 40.9 265 40.6 264.8 40.3 C 263.5 38.2 262 36.2 260.8 34 C 259.2 31 259.2 27.9 260.4 24.8 C 261.3 22.4 262.7 20.2 264.7 18.5 C 264.9 18.3 265 18.2 265.1 18 C 266.3 15.8 268.4 14.7 270.8 14.2 C 271.7 14 272.7 14 273.9 13.9 "/></g><g transform="translate(101.1 6.9)"><path d="M 153.6 68.4 C 155 68.4 156.3 68.7 157.5 69.4 C 159.1 70.1 160.6 70.9 162.1 71.6 C 163.2 72.1 164.2 72.9 164.9 73.9 C 166.2 75.7 166.6 77.6 165.7 79.7 C 165.3 80.6 164.8 81.6 164.2 82.4 C 162.2 84.8 161.5 87.6 161.5 90.6 C 161.5 93.5 161.7 96.3 162.3 99.1 C 162.6 100.6 163.1 102 163.9 103.4 C 164.2 104.1 164.6 104.8 164.8 105.5 C 165.3 106.7 165.2 107.9 164.7 109 C 164.2 110.2 163.5 111.2 162.5 112 C 160.7 113.5 158.8 114.9 156.9 116.3 C 155.9 117.1 154.7 117.6 153.4 117.6 C 151.9 117.7 150.5 117.3 149.3 116.4 C 148.9 116.2 148.5 115.9 148.2 115.6 C 147.2 114.7 146.2 114.1 145 113.6 C 144.8 113.5 144.6 113.4 144.4 113.3 C 141.4 112 139.7 108.7 140.3 105.4 C 140.6 104.1 141.2 103 142.3 102.1 C 143.3 101.4 144.3 100.8 145.5 100.4 C 147.9 99.7 148.8 98.5 148.8 96.1 C 148.8 94.8 148.6 93.5 148.5 92.1 C 148.4 90.7 148.3 89.3 148.3 87.8 C 148.2 85.8 147.5 84.1 146.4 82.5 C 145.8 81.6 145.1 80.8 144.5 79.9 C 143.5 78.4 143.3 76.7 144 75 C 145.3 71.5 147.9 69.5 151.5 68.7 C 152.1 68.5 152.9 68.5 153.6 68.4 "/></g><g transform="translate(102.4 6.9)"><path d="M 188.2 100.6 C 188.7 100.6 189.3 100.6 189.9 100.6 C 190.7 100.6 191.3 100.4 191.8 99.7 C 192.4 99 193 98.3 193.6 97.7 C 194.6 96.5 196 95.9 197.6 95.7 C 198.6 95.6 199.6 95.9 200.5 96.5 C 202.9 98.3 203.8 101.2 202.7 104.1 C 202.2 105.4 201.4 106.4 200.3 107.2 C 199.2 108 198.1 108.7 196.9 109.4 C 195.6 110.2 194.3 111.1 193.2 112.2 C 192.4 112.9 191.5 113.6 190.6 114.2 C 186.9 116.5 183 116.6 179 114.8 C 175.5 113.3 173.2 110.7 172.5 106.9 C 172.1 104.8 171.3 102.8 170.4 100.8 C 167.4 94.4 167.8 88.1 171.5 82 C 172.5 80.3 174 79 175.6 77.8 C 176.1 77.4 176.7 77 177.2 76.6 C 177.8 76.1 178.3 75.5 178.8 75 C 180.4 73.1 182.2 71.4 184.6 70.6 C 186.8 69.8 189 69.7 191.1 70.7 C 193.2 71.6 195.4 72.3 197.7 72.6 C 198.8 72.7 199.8 73.1 200.7 73.7 C 203 75.1 204.3 77 204.4 79.7 C 204.5 83.4 203.3 86.6 200.3 89 C 199 90 197.4 90.7 195.7 90.7 C 193.6 90.6 192.2 89.7 191.3 87.8 C 191 87.4 190.9 86.9 190.6 86.4 C 190.1 85.4 188.9 85.3 188.2 86.2 C 187.7 86.8 187.2 87.5 186.8 88.2 C 186.1 89.2 185.3 90.2 184.2 90.9 C 183.1 91.5 182.6 92.5 182.7 93.8 C 182.9 95.1 183.1 96.4 183.4 97.7 C 183.5 98.4 183.9 99.1 184.3 99.7 C 184.7 100.4 185.5 100.7 186.3 100.7 C 186.9 100.7 187.6 100.7 188.2 100.7 Z M 188.2 100.6 "/></g><g transform="translate(100.1 6.9)"><path d="M 209.1 98.2 C 209.3 96.1 209.5 93.7 209.8 91.3 C 210 89.8 210.2 88.2 210 86.6 C 209.7 83.7 210.6 81.2 212.3 78.9 C 213.2 77.5 214.3 76.4 215.6 75.4 C 216.1 75.1 216.4 74.7 216.8 74.3 C 216.9 74.2 216.9 74.2 217 74.1 C 218.8 71.2 221.7 70.3 224.9 70 C 228.6 69.7 232 70.6 235.1 72.6 C 236.5 73.5 238 74 239.6 74.5 C 242 75.1 243.3 76.7 243.6 79.2 C 243.6 80 243.5 80.9 243.3 81.7 C 242.9 83.5 241.9 85.1 240.4 86.4 C 238.6 88.1 236.3 88.3 234.2 86.9 C 233.4 86.3 232.5 85.5 231.7 84.8 C 231.2 84.4 230.8 83.9 230.3 83.5 C 229.5 82.5 228.3 82.7 227.5 83.4 C 227.1 83.7 226.8 84.1 226.5 84.4 C 225.9 85 225.4 85.7 224.7 86.2 C 223.4 87.3 223.6 89.9 225.6 90.5 C 226.9 90.9 228.2 90.7 229.6 90.4 C 230.7 90.2 231.7 89.8 232.8 89.6 C 234.2 89.4 235.4 89.7 236.5 90.5 C 237.3 91.2 237.7 92.2 237.4 93.3 C 236.9 95.3 235.9 97.2 234.2 98.5 C 233.3 99.3 232.1 99.7 230.9 99.7 C 230.1 99.7 229.3 99.7 228.4 99.6 C 227.6 99.5 226.8 99.5 226 99.8 C 224.5 100.2 224 101.5 224.8 102.9 C 225.9 104.8 227.5 104.4 228.5 103.4 C 228.7 103.2 228.8 103.1 228.9 102.9 C 229.1 102.7 229.3 102.5 229.5 102.3 C 230.7 101.1 232.1 100.6 233.8 100.6 C 238 100.5 240.2 103.5 240.5 106.2 C 240.9 109.1 239.9 111.5 237.4 113.2 C 236 114.3 234.3 114.8 232.5 114.9 C 231.2 115.1 229.9 115 228.6 115.2 C 227.6 115.3 226.6 115.5 225.6 115.7 C 224 116.1 222.4 116.3 220.7 115.8 C 218.7 115.2 217.1 114.1 215.9 112.4 C 215.2 111.4 214.4 110.5 213.5 109.7 C 210.9 107.6 209.8 104.8 209.4 101.7 C 209.2 100.6 209.2 99.6 209.1 98.2 "/></g><g transform="translate(295.7 -47.8)"><path d="M 98.3 150.5 C 98.2 151.8 98.2 153 98.7 154.2 C 99.3 155.6 100.2 156.4 101.7 156.6 C 102.7 156.8 103.6 157 104.6 157.3 C 106 157.6 106.7 157.2 107.3 156 C 107.7 155.2 107.9 154.4 108.3 153.6 C 109.4 151.2 111.3 150.1 113.9 150 C 116.4 150 118.6 151.9 119.1 154.4 C 119.7 157.5 118.8 160.3 116.9 162.7 C 115.6 164.4 114 165.6 112 166.4 C 111.6 166.6 111.1 166.8 110.7 166.9 C 109.2 167.4 107.9 168.1 106.6 169 C 104.9 170.2 103.2 171.1 101.1 171.5 C 98.6 172.1 96.2 172 93.9 170.9 C 91.8 169.9 90.4 168.4 89.6 166.2 C 89.5 165.9 89.4 165.5 89.3 165.1 C 88.8 163.4 88 161.8 86.9 160.3 C 84.5 156.9 83.2 153.1 83.1 148.9 C 83 145.2 84.1 141.8 86.1 138.7 C 87.3 136.8 88.5 134.9 89.8 133 C 91.9 129.7 94.9 128 98.6 127.5 C 99.1 127.4 99.6 127.3 100.2 127.3 C 101.3 127.2 102.1 126.6 102.9 125.8 C 104.3 124.4 106 123.6 108 123.8 C 108.9 123.9 109.8 124.1 110.6 124.5 C 111.6 124.9 112.7 125.3 113.8 125.6 C 114.8 125.9 115.8 126.2 116.7 126.7 C 118.6 127.9 119.6 129.8 120 131.9 C 120.9 137.3 119.2 141.6 115 145 C 114 145.8 112.9 146.2 111.7 146.4 C 109.9 146.7 108.5 146 107.5 144.5 C 107.1 144 106.9 143.3 106.6 142.7 C 106.4 142.4 106.3 142 106.1 141.6 C 105.5 140.7 104.6 140.7 103.9 141.5 C 103.7 141.8 103.5 142.1 103.4 142.4 C 102.6 143.8 101.6 145 100.1 145.8 C 98.9 146.4 98.3 147.5 98.3 148.8 C 98.3 149.4 98.3 150 98.3 150.5 "/></g><g transform="translate(295.9 -47.8)"><path d="M 145.2 143.2 C 146.6 143.2 148.3 142.1 148.8 140.4 C 148.9 140 148.7 139.4 148.6 138.9 C 148.5 138.6 148.2 138.4 148.1 138.1 C 147.8 137.4 147.2 137.2 146.5 137.2 C 144.4 137.2 142.5 139 142.4 141 C 142.4 141.6 142.6 142.1 143.1 142.4 C 143.7 142.9 144.4 143.2 145.2 143.2 M 158.9 138.9 C 159 140.8 158 142.7 156.2 144.2 C 155 145.3 153.6 146.2 152.1 146.8 C 150.9 147.3 150.1 148 149.4 149 C 148.4 150.4 148.4 151.9 149.3 153.3 C 150.1 154.4 151 155.3 151.9 156.2 C 152.3 156.6 152.8 156.5 153.2 156.4 C 153.9 156.1 154.3 155.6 154.4 155 C 154.5 154.6 154.5 154.2 154.5 153.8 C 154.5 152.3 155.2 151.4 156.7 151.1 C 158.2 150.7 159.7 150.7 161.2 151 C 164 151.5 165.7 154.1 165.4 156.9 C 165.4 157.7 165.1 158.4 164.9 159.1 C 164.6 160.4 164 161.8 163.7 163.1 C 163 166.4 161.1 168.4 157.9 169.3 C 156.4 169.7 154.8 170.1 153.2 170 C 151.8 169.9 150.4 169.6 149.1 168.9 C 148.4 168.4 147.8 167.9 147.2 167.3 C 146.5 166.6 145.7 165.9 144.8 165.4 C 143.1 164.5 141.7 163.3 140.8 161.6 C 140.6 161.3 140.4 161 140.1 160.7 C 139.9 160.4 139.7 160.2 139.5 160 C 138.7 159.6 138.1 160 138.1 160.8 C 138.1 161.6 138.2 162.4 138.3 163.2 C 138.4 164.4 138.3 165.5 138 166.7 C 137.6 168.2 136.7 169.4 135.3 170.1 C 134.1 170.7 132.9 171.3 131.6 171.3 C 128.6 171.4 126.3 170 124.5 167.7 C 123.1 165.7 122.9 163.5 123.5 161.2 C 123.9 159.9 124.4 158.5 125.1 157.2 C 126.2 155.2 127 153.1 127.2 150.8 C 127.3 149.5 127.8 148.3 128.3 147.1 C 128.6 146.4 129 145.7 129.3 144.9 C 130 143.2 130 141.4 129.2 139.7 C 128.8 138.7 128.3 137.8 127.9 136.9 C 127.4 135.7 126.9 134.4 126.8 133.1 C 126.2 129.3 128.9 125.3 132.7 124.5 C 134 124.3 135.2 124.5 136.5 124.9 C 137.4 125.3 138.2 125.3 139.2 125.1 C 140.6 124.8 142.1 124.5 143.5 124.4 C 146.1 124.2 148.6 124.7 150.7 126.3 C 151.5 126.8 152.2 127.5 152.9 128.1 C 153.7 128.8 154.5 129.6 155.3 130.4 C 157.7 132.5 158.8 135.2 158.9 138.9 "/></g><g transform="translate(295.3 -47.8)"><path d="M 168.4 153.5 C 168.5 151.2 168.9 149.1 169.3 147 C 169.7 144.9 169.9 142.9 169.5 140.9 C 168.7 137 170.4 133.9 172.9 131.2 C 173.7 130.5 174.6 129.8 175.5 129.3 C 176.3 128.8 177 128.2 177.6 127.5 C 178.9 125.9 180.5 124.7 182.5 124.1 C 185.7 123 188.8 123.6 191.7 125.2 C 192.4 125.5 193 126 193.7 126.4 C 194.9 127.2 196 128.1 197.3 128.6 C 201 130.4 201.8 134.4 200.8 137.2 C 199.9 139.8 197.9 141.5 195.2 142 C 194.3 142.2 193.6 142 192.9 141.4 C 192.3 140.9 191.8 140.3 191.2 139.8 C 190.9 139.5 190.7 139.1 190.3 138.8 C 189.5 138 188.5 138 187.5 138.6 C 186.5 139.3 185.5 140 184.5 140.6 C 183.6 141.2 183.2 141.9 183.3 143 C 183.3 145.8 185.8 147.3 188 146.7 C 189.5 146.3 191 146.1 192.5 146.2 C 194.2 146.3 195.3 147.2 195.9 148.7 C 196.6 150.1 196.3 151.5 195.2 152.7 C 194 153.9 192.5 154.7 190.7 154.8 C 188.8 154.8 186.9 155 184.9 155.1 C 183.6 155.2 182.5 156.5 182.8 157.9 C 183 158.9 183.4 159.8 184.3 160.4 C 186 161.4 187.2 161.3 188.9 159.5 C 189.3 159.1 189.7 158.4 190.1 157.9 C 191.7 155.8 194 154.9 196.5 155.8 C 198.6 156.5 199.7 158.1 200.3 160.1 C 201.1 163.1 200 165.5 197.9 167.5 C 195.9 169.5 193.5 170.6 190.6 170.5 C 189.5 170.5 188.5 170.7 187.4 171.1 C 185.5 171.8 183.6 172.2 181.5 172.1 C 179.6 172 177.8 171.6 176.1 170.7 C 174.2 169.8 173 168.3 172.4 166.3 C 171.9 164.6 171.3 163 170.5 161.4 C 169.2 158.9 168.4 156.3 168.4 153.5 "/></g><g transform="translate(295.4 -47.8)"><path d="M 227.1 152.4 C 227.1 152.3 227.1 152 226.9 151.8 C 226.2 150.5 225.7 149.2 225.4 147.8 C 225.3 147.4 225.2 147.1 224.7 147.1 C 224.3 147 224 147.2 223.8 147.6 C 223.6 148 223.5 148.5 223.4 149 C 223.3 150.3 223.2 151.6 222.3 152.8 C 222.1 153.1 222.1 153.5 222.1 153.9 C 222 154.6 222.4 154.8 223.1 154.9 C 223.3 154.9 223.5 155 223.6 155 C 224 155 224.3 155.1 224.7 155.1 C 225.4 155 226 154.5 226.5 154 C 226.9 153.6 227.2 153.2 227.1 152.4 M 237 169.3 C 234.9 169.3 233.1 168.5 231.6 167.1 C 230.9 166.4 230.3 165.7 229.7 164.9 C 228.6 163.7 227.4 163.3 225.9 163.8 C 225.8 163.8 225.7 163.8 225.6 163.9 C 224.3 164.3 223.1 164.3 221.8 164 C 220.7 163.7 219.9 164 219.3 165.1 C 218.9 165.8 218.6 166.5 218.3 167.2 C 217.4 169.4 215.7 170.2 213.5 170.2 C 210.5 170.4 208.1 169.3 206.2 167.2 C 204.4 165.3 203.8 163 204.7 160.4 C 205.5 157.9 207.1 156 209.3 154.6 C 210 154.2 210.7 153.8 211.3 153.5 C 212.6 152.8 213.3 151.8 213.8 150.5 C 214 149.8 214.1 149 214.3 148.3 C 214.7 147 215 145.6 215.4 144.2 C 215.8 143.1 215.9 142 215.5 140.8 C 214.5 137.7 215.3 134.9 217.1 132.3 C 219.1 129.4 221.7 127 225.2 126 C 227.2 125.4 229.2 125.1 231.3 125.7 C 232 125.9 232.7 126.3 233.3 126.6 C 234.5 127.3 235 128.4 234.8 129.7 C 234.7 130.7 234.5 131.6 234.3 132.5 C 234 134 233.6 135.4 233.4 136.9 C 233.2 137.8 233.4 138.8 233.9 139.6 C 235.5 142.1 236.2 144.9 236.9 147.7 C 237.4 149.4 237.9 151.1 238.4 152.8 C 238.9 154.3 239.8 155.5 241.2 156.4 C 241.9 156.8 242.6 157.4 243.3 157.9 C 245.2 159.6 245.7 161.6 244.9 163.9 C 243.7 167.2 240.7 169.3 237 169.3 "/></g><g transform="translate(295.4 -47.8)"><path d="M 266.3 160.7 C 266 161.1 265.8 161.3 265.6 161.6 C 265.2 162.2 264.8 162.8 264.3 163.3 C 263.8 163.9 263.3 164.4 262.7 164.7 C 262 165.1 261.5 165.7 261.2 166.5 C 260.9 167.3 260.6 168 260.2 168.7 C 258.9 171 255.3 172.4 252.4 170.7 C 250.1 169.4 248.6 167.6 248 165 C 247.9 164.2 248 163.4 248 162.6 C 248 161.9 248.2 161.1 248.2 160.4 C 248.1 158.1 249.1 156.2 250.2 154.3 C 250.9 153.2 251.6 152.1 252.7 151.3 C 253.3 151 253.9 150.6 254.5 150.4 C 255.9 149.8 257.1 150.2 258 151.5 C 258.3 152 258.6 152.5 258.9 153 C 259.6 153.8 260.3 153.7 260.6 152.7 C 260.8 152 260.9 151.2 260.9 150.5 C 261 150.2 260.9 149.9 260.9 149.6 C 260.7 147.8 260.7 146 261.3 144.2 C 261.5 143.8 261.5 143.3 261.6 142.8 C 262.1 141.5 261.6 140.3 260.6 139.4 C 260.1 138.8 259.5 138.3 258.8 137.8 C 256.5 136.1 255.9 133.9 256.6 131.2 C 257.4 128 259.4 126 262.7 125.3 C 262.9 125.3 263.2 125.2 263.4 125.2 C 264.9 125.4 266.2 125.1 267.6 124.6 C 269.6 123.8 271.3 124.4 272.7 125.9 C 273.3 126.6 273.7 127.5 274.1 128.3 C 274.8 130 274.9 131.7 274.6 133.5 C 274.4 134.8 274.5 136.1 275.1 137.2 C 276.4 139.9 276.1 142.4 274.8 144.9 C 274.4 145.5 274 146.2 273.7 146.9 C 273.2 148.1 273.6 149.5 274.7 150.3 C 275.4 150.9 276.2 151 276.9 150.3 C 278 149 279.2 147.7 280.2 146.4 C 281 145.3 281.1 144.1 280.8 142.8 C 280.5 142 280.2 141.3 280 140.5 C 278.8 137.5 278.6 134.5 279.3 131.3 C 280.1 127.7 282.4 125.7 285.9 124.8 C 287.4 124.5 288.9 124.5 290.3 125 C 292.1 125.6 293.3 126.7 294 128.5 C 294.5 130 294.7 131.7 294.8 133.4 C 294.8 134 294.5 134.6 294.1 135.1 C 293.7 135.7 293.2 136.2 292.8 136.8 C 292.4 137.3 292.2 137.9 292.3 138.7 C 292.6 140.7 292.7 142.8 292.3 144.9 C 292.2 145.7 292.2 146.5 292.2 147.3 C 292.2 147.6 292.3 148 292.5 148.3 C 292.9 149.1 293.3 149.2 294.1 149 C 294.7 148.8 295.3 148.6 295.9 148.5 C 297.8 148.1 299.3 148.8 300.4 150.3 C 301.8 152.3 302.2 154.5 301.8 156.8 C 301.4 158.6 300.7 160.2 299.6 161.6 C 299 162.4 298.5 163.3 297.9 164.2 C 296.3 166.7 294.3 168.7 291.3 169.4 C 288.1 170.2 284.4 169.1 282.5 165.8 C 282.2 165.2 281.9 164.6 281.5 164 C 281.3 163.5 281.1 163 280.7 162.6 C 280 161.8 278.9 162 278.5 163 C 278.3 163.3 278.3 163.7 278.2 164 C 278 164.9 277.7 165.7 277.4 166.5 C 276.1 170 271.4 170.9 268.8 169.1 C 267.3 168.2 266.6 166.9 266.6 165.2 C 266.7 164.4 266.7 163.7 266.8 162.9 C 266.8 162.2 266.7 161.5 266.3 160.7 "/></g></symbol><symbol id="jicJ" viewBox="-1 74.2 207.7 51.6" fill="currentColor"><g transform="translate(-89.9 61.7)"><path d="M 110.6 42.7 C 110.4 41.4 110.4 40.5 110.3 39.5 C 110.1 37.2 110.4 35 111.3 32.8 C 111.5 32.4 111.6 31.9 111.8 31.4 C 111.9 30.9 111.8 30.5 111.4 30.3 C 111 30 110.6 30.2 110.3 30.4 C 109.5 31.1 108.5 31.3 107.4 31.1 C 106.4 31 105.5 31.3 104.7 32.1 C 104.4 32.4 104 32.7 103.7 33.1 C 102.3 34.4 100.6 34.7 98.8 34.4 C 95.2 33.8 92.8 30.8 92.9 27.2 C 93 25.6 93.6 24.3 94.5 23 C 95.5 21.8 96.7 20.8 98.1 20 C 98.7 19.6 99.2 19.1 99.5 18.5 C 100.7 16.6 102.3 15.5 104.5 15.2 C 105.5 15.1 106.5 15.3 107.4 15.6 C 108.4 15.9 109.3 16.4 110.2 16.7 C 110.7 17 111.2 17.2 111.8 17.5 C 113 18.1 114.2 18 115.4 17.5 C 116.2 17.1 117 16.7 117.8 16.3 C 118.7 15.8 119.7 15.4 120.8 15.3 C 122.2 15.1 123.4 15.4 124.5 16.3 C 126.9 18.3 126.9 21.5 126 23.5 C 125.6 24.3 125 25 124.5 25.7 C 124.2 26.1 123.8 26.5 123.4 26.9 C 122.3 28.1 121.9 29.5 122.1 31.1 C 122.3 32.6 122.5 33.9 123.1 35.2 C 123.6 36.6 124.2 37.9 124.7 39.2 C 125.9 41.9 125.9 44.6 124.3 47.3 C 123.5 48.6 122.6 49.9 121.5 51 C 120.1 52.3 119 53.7 118 55.2 C 117 56.7 115.9 58 114.5 59 C 112 60.9 109.3 61.8 106.2 61.2 C 105.3 61.1 104.4 61 103.5 60.9 C 102.4 60.6 101.4 60.1 100.6 59.3 C 99.6 58.4 98.4 57.7 97.2 57.1 C 90 53.8 89.9 45.5 93.6 41.2 C 94.8 39.9 96.3 39.2 98.1 38.8 C 99.9 38.5 103.1 40.2 103.9 41.8 C 104.4 42.8 104.6 43.8 104.3 44.8 C 104.2 45.3 104 45.9 103.9 46.4 C 103.3 47.7 104.9 49.4 106.4 49 C 108.4 48.4 109.7 47.2 110.2 45.3 C 110.5 44.3 110.5 43.3 110.6 42.7 "/></g><g transform="translate(-88.3 61.7)"><path d="M 142.9 44.4 C 143 45 143 45.4 143.1 45.7 C 143.8 48.8 146.7 49.9 149.2 47.7 C 150.9 46.2 151.5 44.5 151 42.3 C 150.7 40.9 150.7 39.5 151 38.1 C 151.1 37.7 151.2 37.2 151.2 36.8 C 151.3 35.6 150.7 34.9 149.5 34.8 C 149.2 34.8 148.8 34.9 148.5 34.9 C 147.8 35 147.1 35.1 146.4 35 C 145.4 34.9 145.1 35 144.9 35.9 C 144.6 37.1 144.3 38.2 144.2 39.4 C 144.1 40.5 143.9 41.5 143.5 42.6 C 143.2 43.2 143 43.9 142.9 44.4 M 127.4 41.4 C 127.6 38.1 128 34.9 129.2 31.8 C 129.6 30.7 129.9 29.7 129.9 28.6 C 130.2 25.9 131.2 23.6 133.6 22.2 C 134.2 21.9 134.9 21.6 135.5 21.4 C 136.6 21 137.5 20.5 138.3 19.6 C 140.2 17.6 142.6 16.4 145 15.4 C 149.7 13.5 154.5 14.8 158 18.6 C 159.5 20.2 160.6 22 161.3 24 C 161.9 25.4 162.5 26.6 163.4 27.7 C 166.8 31.7 167 36.2 165.4 40.9 C 165.3 41.3 165.2 41.7 165 42 C 164.2 43.7 163.6 45.4 163.3 47.1 C 162.6 50.4 160.8 52.9 157.9 54.7 C 156.6 55.5 155.4 56.6 154.4 57.8 C 152.6 59.9 150.4 61.4 147.7 61.9 C 146.1 62.2 144.6 62.1 143.1 61.7 C 141.8 61.4 140.6 61.1 139.3 60.8 C 137.7 60.5 136.3 59.6 135 58.6 C 131.2 55.3 129 51.1 128 46.3 C 127.7 44.7 127.6 43 127.4 41.4 "/></g><g transform="translate(-89.2 61.7)"><path d="M 195 45.4 C 194.7 45.6 194.4 45.8 194.1 46 C 193 46.8 191.7 47.3 190.4 47.4 C 189.7 47.5 189 47.3 188.3 47.2 C 188 47.2 187.8 47 187.5 47 C 186.4 46.7 185.7 47.2 185.7 48.4 C 185.7 48.9 185.8 49.3 185.9 49.8 C 186.2 50.9 186.5 52 186.8 53.1 C 187.4 55.8 186.6 58.1 184.6 59.8 C 181.9 62.2 178.7 63.1 175.1 62.2 C 171.1 61.2 170.1 57.6 170.5 54.9 C 170.7 53.9 171 52.8 171.3 51.8 C 171.6 50.9 171.6 49.9 171.4 48.9 C 171.2 47.5 170.9 46.1 170.8 44.7 C 170.6 42.3 171.2 40.1 171.8 37.8 C 172.3 36.2 172.8 34.7 173.1 33.1 C 173.3 32 173.3 31 173.2 29.9 C 173.2 29.1 172.8 28.4 172.6 27.6 C 172.3 26.1 172 24.5 172.3 22.9 C 172.5 21.6 173 20.5 173.8 19.6 C 175.7 17.3 178.2 15.9 181.2 15.8 C 183.4 15.7 185.1 16.7 186.4 18.5 C 188 20.8 188.5 23.3 187.4 26 C 187.3 26.3 187.1 26.7 187 27 C 186.5 28 186.4 29.1 186.7 30.2 C 186.8 30.7 186.8 31.3 186.8 31.9 C 186.8 34.7 189.5 35.7 191.6 35 C 194 34.2 195.2 31.6 194.3 29.2 C 194 28.6 193.7 28.1 193.4 27.6 C 192.3 25.6 192.3 23.6 193.3 21.6 C 195.2 17.6 198.5 15.1 202.8 14.3 C 206.2 13.6 209.1 14.7 210.6 18 C 211.3 19.6 211.6 21.3 211.3 23.1 C 211.1 24.5 210.8 25.8 210.4 27.2 C 210 28.4 209.6 29.5 209.2 30.6 C 208.8 31.7 208.8 32.8 209 33.9 C 209.4 35.6 209.7 37.4 210 39.2 C 210.4 42.1 210.2 44.9 209.3 47.7 C 208.6 49.9 208.2 52.1 208.1 54.3 C 208.1 58.1 205 61.3 201.1 61.8 C 198.3 62.1 196.2 61.2 194.7 58.8 C 194.1 57.7 193.7 56.5 193.5 55.3 C 193.3 53.6 193.5 51.9 194.1 50.2 C 194.5 49 194.8 47.7 195.2 46.5 C 195.2 46.2 195.2 45.9 195.2 45.6 C 195.1 45.5 195.1 45.5 195 45.4 "/></g><g transform="translate(-89.4 61.7)"><path d="M 242.1 36.2 C 242.7 35.9 242.6 35.4 242.6 34.9 C 242.6 33.8 242.3 32.7 241.9 31.6 C 241.5 30.9 241.2 30.2 240.9 29.4 C 239.5 26.3 239.5 23.3 241 20.2 C 241.9 18.4 243 16.8 244.6 15.5 C 246.6 14 248.9 13.5 251.4 13.9 C 253.2 14.3 254.5 15.4 255.4 17 C 256.5 19.1 256.7 21.2 256.5 23.5 C 256.3 25.7 255.6 27.8 254.8 29.9 C 254.4 30.9 254 31.8 253.6 32.8 C 253.3 33.8 253.1 34.8 253.2 35.9 C 253.3 37.7 253.1 39.5 252.5 41.3 C 252.3 41.8 252.1 42.2 252 42.7 C 251.5 44.1 251.6 45.5 252.2 46.8 C 252.8 48.3 253.4 49.7 253.7 51.2 C 254.3 53.5 254 55.8 252.9 57.9 C 251.4 60.6 249.1 61.9 246.2 61.8 C 243.5 61.7 241.3 60.3 239.8 58 C 239.5 57.5 239.2 57 238.9 56.5 C 238.3 55.2 237.5 54.2 236.4 53.4 C 235.9 53 235.4 52.6 235 52.2 C 232.7 50.4 231.6 48 231.1 45.2 C 231.1 44.9 231 44.5 230.9 44.1 C 230.8 43.7 230.6 43.3 230.1 43.2 C 229.4 43.7 229.2 44.3 229 45.1 C 228.6 46.7 229 48.3 229.5 49.9 C 229.6 50.4 229.8 50.9 230 51.3 C 231.4 54.8 230.4 59.2 226.6 61.7 C 224.7 62.9 222.7 63.1 220.6 62.4 C 217.2 61.2 214 57.3 214.4 53.2 C 214.5 51.8 214.8 50.3 215.5 49.1 C 217.1 46.3 217.9 43.4 217.9 40.3 C 217.9 39.2 218.2 38 218.5 37 C 219 35.1 218.8 33.3 217.9 31.6 C 217.5 31 217.1 30.3 216.8 29.6 C 216.3 28.5 215.8 27.5 215.5 26.4 C 214.9 24.8 215.2 23.2 216 21.8 C 217.5 19 219.9 17.3 222.9 16.4 C 223.7 16.1 224.5 15.9 225.4 15.8 C 228.1 15.7 230 17 231.3 19.3 C 231.9 20.3 232.2 21.6 232.7 22.8 C 232.9 23.5 233.1 24.3 233.4 25.1 C 233.7 26.3 234.3 27.4 235.2 28.2 C 237.1 29.9 238.5 31.8 239.8 33.9 C 240.2 34.6 240.7 35.1 241.2 35.6 C 241.4 35.9 241.8 36.1 242.1 36.2 "/></g><g transform="translate(-88.6 61.7)"><path d="M 273.9 13.9 C 275.7 14.1 277.9 14.4 280 14.7 C 281.5 14.9 283.1 15 284.6 15.4 C 289 16.5 291.9 19.2 293.1 23.6 C 293.6 25.7 293.2 27.7 292.1 29.6 C 291 31.6 289 33.2 285.6 32.4 C 284 32.1 282.5 31.3 281.3 30.2 C 280.7 29.6 280.1 29 279.5 28.5 C 278.3 27.5 276.9 27.6 275.9 28.8 C 275.1 29.9 274.2 30.9 273.1 31.6 C 272.3 32.2 272.3 32.9 272.9 33.6 C 273.9 34.6 275 34.9 276.4 34.6 C 277.6 34.2 278.9 33.8 280.2 33.7 C 284 33.2 287.4 34.3 290.2 36.9 C 291.9 38.5 293.1 40.3 293.6 42.6 C 294.3 46.3 293.4 49.6 290.8 52.3 C 290.1 53.1 289.2 53.8 288.4 54.5 C 286.9 55.5 285.7 56.6 284.6 58 C 284.2 58.6 283.7 59.1 283.3 59.5 C 281.4 61.3 279.2 62.3 276.8 62.6 C 273.5 63 270.7 62.1 268.2 60 C 267.1 59 265.9 58.3 264.4 58.1 C 263.7 58 263.1 57.7 262.4 57.5 C 261.1 57.1 260.3 56.3 259.7 55.2 C 258 52.2 258 49.2 259.8 46.3 C 261.3 43.9 264.2 43 266.8 44 C 268.1 44.5 269.3 45.3 270.3 46.2 C 271 46.7 271.6 47.2 272.3 47.6 C 274.1 48.5 276 48 277.1 46.4 C 277.4 46.1 277.6 45.7 277.8 45.4 C 278.5 43.9 277.6 42.4 276.1 42.4 C 275 42.3 273.9 42.4 272.9 42.6 C 271.2 42.9 269.6 42.9 267.9 42.4 C 267.1 42.2 266.3 41.8 265.6 41.2 C 265.3 40.9 265 40.6 264.8 40.3 C 263.5 38.2 262 36.2 260.8 34 C 259.2 31 259.2 27.9 260.4 24.8 C 261.3 22.4 262.7 20.2 264.7 18.5 C 264.9 18.3 265 18.2 265.1 18 C 266.3 15.8 268.4 14.7 270.8 14.2 C 271.7 14 272.7 14 273.9 13.9 "/></g></symbol><symbol id="jicI" viewBox="239.8 74.2 104.9 51.6" fill="currentColor"><g transform="translate(101.1 6.9)"><path d="M 153.6 68.4 C 155 68.4 156.3 68.7 157.5 69.4 C 159.1 70.1 160.6 70.9 162.1 71.6 C 163.2 72.1 164.2 72.9 164.9 73.9 C 166.2 75.7 166.6 77.6 165.7 79.7 C 165.3 80.6 164.8 81.6 164.2 82.4 C 162.2 84.8 161.5 87.6 161.5 90.6 C 161.5 93.5 161.7 96.3 162.3 99.1 C 162.6 100.6 163.1 102 163.9 103.4 C 164.2 104.1 164.6 104.8 164.8 105.5 C 165.3 106.7 165.2 107.9 164.7 109 C 164.2 110.2 163.5 111.2 162.5 112 C 160.7 113.5 158.8 114.9 156.9 116.3 C 155.9 117.1 154.7 117.6 153.4 117.6 C 151.9 117.7 150.5 117.3 149.3 116.4 C 148.9 116.2 148.5 115.9 148.2 115.6 C 147.2 114.7 146.2 114.1 145 113.6 C 144.8 113.5 144.6 113.4 144.4 113.3 C 141.4 112 139.7 108.7 140.3 105.4 C 140.6 104.1 141.2 103 142.3 102.1 C 143.3 101.4 144.3 100.8 145.5 100.4 C 147.9 99.7 148.8 98.5 148.8 96.1 C 148.8 94.8 148.6 93.5 148.5 92.1 C 148.4 90.7 148.3 89.3 148.3 87.8 C 148.2 85.8 147.5 84.1 146.4 82.5 C 145.8 81.6 145.1 80.8 144.5 79.9 C 143.5 78.4 143.3 76.7 144 75 C 145.3 71.5 147.9 69.5 151.5 68.7 C 152.1 68.5 152.9 68.5 153.6 68.4 "/></g><g transform="translate(102.4 6.9)"><path d="M 188.2 100.6 C 188.7 100.6 189.3 100.6 189.9 100.6 C 190.7 100.6 191.3 100.4 191.8 99.7 C 192.4 99 193 98.3 193.6 97.7 C 194.6 96.5 196 95.9 197.6 95.7 C 198.6 95.6 199.6 95.9 200.5 96.5 C 202.9 98.3 203.8 101.2 202.7 104.1 C 202.2 105.4 201.4 106.4 200.3 107.2 C 199.2 108 198.1 108.7 196.9 109.4 C 195.6 110.2 194.3 111.1 193.2 112.2 C 192.4 112.9 191.5 113.6 190.6 114.2 C 186.9 116.5 183 116.6 179 114.8 C 175.5 113.3 173.2 110.7 172.5 106.9 C 172.1 104.8 171.3 102.8 170.4 100.8 C 167.4 94.4 167.8 88.1 171.5 82 C 172.5 80.3 174 79 175.6 77.8 C 176.1 77.4 176.7 77 177.2 76.6 C 177.8 76.1 178.3 75.5 178.8 75 C 180.4 73.1 182.2 71.4 184.6 70.6 C 186.8 69.8 189 69.7 191.1 70.7 C 193.2 71.6 195.4 72.3 197.7 72.6 C 198.8 72.7 199.8 73.1 200.7 73.7 C 203 75.1 204.3 77 204.4 79.7 C 204.5 83.4 203.3 86.6 200.3 89 C 199 90 197.4 90.7 195.7 90.7 C 193.6 90.6 192.2 89.7 191.3 87.8 C 191 87.4 190.9 86.9 190.6 86.4 C 190.1 85.4 188.9 85.3 188.2 86.2 C 187.7 86.8 187.2 87.5 186.8 88.2 C 186.1 89.2 185.3 90.2 184.2 90.9 C 183.1 91.5 182.6 92.5 182.7 93.8 C 182.9 95.1 183.1 96.4 183.4 97.7 C 183.5 98.4 183.9 99.1 184.3 99.7 C 184.7 100.4 185.5 100.7 186.3 100.7 C 186.9 100.7 187.6 100.7 188.2 100.7 Z M 188.2 100.6 "/></g><g transform="translate(100.1 6.9)"><path d="M 209.1 98.2 C 209.3 96.1 209.5 93.7 209.8 91.3 C 210 89.8 210.2 88.2 210 86.6 C 209.7 83.7 210.6 81.2 212.3 78.9 C 213.2 77.5 214.3 76.4 215.6 75.4 C 216.1 75.1 216.4 74.7 216.8 74.3 C 216.9 74.2 216.9 74.2 217 74.1 C 218.8 71.2 221.7 70.3 224.9 70 C 228.6 69.7 232 70.6 235.1 72.6 C 236.5 73.5 238 74 239.6 74.5 C 242 75.1 243.3 76.7 243.6 79.2 C 243.6 80 243.5 80.9 243.3 81.7 C 242.9 83.5 241.9 85.1 240.4 86.4 C 238.6 88.1 236.3 88.3 234.2 86.9 C 233.4 86.3 232.5 85.5 231.7 84.8 C 231.2 84.4 230.8 83.9 230.3 83.5 C 229.5 82.5 228.3 82.7 227.5 83.4 C 227.1 83.7 226.8 84.1 226.5 84.4 C 225.9 85 225.4 85.7 224.7 86.2 C 223.4 87.3 223.6 89.9 225.6 90.5 C 226.9 90.9 228.2 90.7 229.6 90.4 C 230.7 90.2 231.7 89.8 232.8 89.6 C 234.2 89.4 235.4 89.7 236.5 90.5 C 237.3 91.2 237.7 92.2 237.4 93.3 C 236.9 95.3 235.9 97.2 234.2 98.5 C 233.3 99.3 232.1 99.7 230.9 99.7 C 230.1 99.7 229.3 99.7 228.4 99.6 C 227.6 99.5 226.8 99.5 226 99.8 C 224.5 100.2 224 101.5 224.8 102.9 C 225.9 104.8 227.5 104.4 228.5 103.4 C 228.7 103.2 228.8 103.1 228.9 102.9 C 229.1 102.7 229.3 102.5 229.5 102.3 C 230.7 101.1 232.1 100.6 233.8 100.6 C 238 100.5 240.2 103.5 240.5 106.2 C 240.9 109.1 239.9 111.5 237.4 113.2 C 236 114.3 234.3 114.8 232.5 114.9 C 231.2 115.1 229.9 115 228.6 115.2 C 227.6 115.3 226.6 115.5 225.6 115.7 C 224 116.1 222.4 116.3 220.7 115.8 C 218.7 115.2 217.1 114.1 215.9 112.4 C 215.2 111.4 214.4 110.5 213.5 109.7 C 210.9 107.6 209.8 104.8 209.4 101.7 C 209.2 100.6 209.2 99.6 209.1 98.2 "/></g></symbol><symbol id="jicC" viewBox="377.7 74.2 220.9 51.6" fill="currentColor"><g transform="translate(295.7 -47.8)"><path d="M 98.3 150.5 C 98.2 151.8 98.2 153 98.7 154.2 C 99.3 155.6 100.2 156.4 101.7 156.6 C 102.7 156.8 103.6 157 104.6 157.3 C 106 157.6 106.7 157.2 107.3 156 C 107.7 155.2 107.9 154.4 108.3 153.6 C 109.4 151.2 111.3 150.1 113.9 150 C 116.4 150 118.6 151.9 119.1 154.4 C 119.7 157.5 118.8 160.3 116.9 162.7 C 115.6 164.4 114 165.6 112 166.4 C 111.6 166.6 111.1 166.8 110.7 166.9 C 109.2 167.4 107.9 168.1 106.6 169 C 104.9 170.2 103.2 171.1 101.1 171.5 C 98.6 172.1 96.2 172 93.9 170.9 C 91.8 169.9 90.4 168.4 89.6 166.2 C 89.5 165.9 89.4 165.5 89.3 165.1 C 88.8 163.4 88 161.8 86.9 160.3 C 84.5 156.9 83.2 153.1 83.1 148.9 C 83 145.2 84.1 141.8 86.1 138.7 C 87.3 136.8 88.5 134.9 89.8 133 C 91.9 129.7 94.9 128 98.6 127.5 C 99.1 127.4 99.6 127.3 100.2 127.3 C 101.3 127.2 102.1 126.6 102.9 125.8 C 104.3 124.4 106 123.6 108 123.8 C 108.9 123.9 109.8 124.1 110.6 124.5 C 111.6 124.9 112.7 125.3 113.8 125.6 C 114.8 125.9 115.8 126.2 116.7 126.7 C 118.6 127.9 119.6 129.8 120 131.9 C 120.9 137.3 119.2 141.6 115 145 C 114 145.8 112.9 146.2 111.7 146.4 C 109.9 146.7 108.5 146 107.5 144.5 C 107.1 144 106.9 143.3 106.6 142.7 C 106.4 142.4 106.3 142 106.1 141.6 C 105.5 140.7 104.6 140.7 103.9 141.5 C 103.7 141.8 103.5 142.1 103.4 142.4 C 102.6 143.8 101.6 145 100.1 145.8 C 98.9 146.4 98.3 147.5 98.3 148.8 C 98.3 149.4 98.3 150 98.3 150.5 "/></g><g transform="translate(295.9 -47.8)"><path d="M 145.2 143.2 C 146.6 143.2 148.3 142.1 148.8 140.4 C 148.9 140 148.7 139.4 148.6 138.9 C 148.5 138.6 148.2 138.4 148.1 138.1 C 147.8 137.4 147.2 137.2 146.5 137.2 C 144.4 137.2 142.5 139 142.4 141 C 142.4 141.6 142.6 142.1 143.1 142.4 C 143.7 142.9 144.4 143.2 145.2 143.2 M 158.9 138.9 C 159 140.8 158 142.7 156.2 144.2 C 155 145.3 153.6 146.2 152.1 146.8 C 150.9 147.3 150.1 148 149.4 149 C 148.4 150.4 148.4 151.9 149.3 153.3 C 150.1 154.4 151 155.3 151.9 156.2 C 152.3 156.6 152.8 156.5 153.2 156.4 C 153.9 156.1 154.3 155.6 154.4 155 C 154.5 154.6 154.5 154.2 154.5 153.8 C 154.5 152.3 155.2 151.4 156.7 151.1 C 158.2 150.7 159.7 150.7 161.2 151 C 164 151.5 165.7 154.1 165.4 156.9 C 165.4 157.7 165.1 158.4 164.9 159.1 C 164.6 160.4 164 161.8 163.7 163.1 C 163 166.4 161.1 168.4 157.9 169.3 C 156.4 169.7 154.8 170.1 153.2 170 C 151.8 169.9 150.4 169.6 149.1 168.9 C 148.4 168.4 147.8 167.9 147.2 167.3 C 146.5 166.6 145.7 165.9 144.8 165.4 C 143.1 164.5 141.7 163.3 140.8 161.6 C 140.6 161.3 140.4 161 140.1 160.7 C 139.9 160.4 139.7 160.2 139.5 160 C 138.7 159.6 138.1 160 138.1 160.8 C 138.1 161.6 138.2 162.4 138.3 163.2 C 138.4 164.4 138.3 165.5 138 166.7 C 137.6 168.2 136.7 169.4 135.3 170.1 C 134.1 170.7 132.9 171.3 131.6 171.3 C 128.6 171.4 126.3 170 124.5 167.7 C 123.1 165.7 122.9 163.5 123.5 161.2 C 123.9 159.9 124.4 158.5 125.1 157.2 C 126.2 155.2 127 153.1 127.2 150.8 C 127.3 149.5 127.8 148.3 128.3 147.1 C 128.6 146.4 129 145.7 129.3 144.9 C 130 143.2 130 141.4 129.2 139.7 C 128.8 138.7 128.3 137.8 127.9 136.9 C 127.4 135.7 126.9 134.4 126.8 133.1 C 126.2 129.3 128.9 125.3 132.7 124.5 C 134 124.3 135.2 124.5 136.5 124.9 C 137.4 125.3 138.2 125.3 139.2 125.1 C 140.6 124.8 142.1 124.5 143.5 124.4 C 146.1 124.2 148.6 124.7 150.7 126.3 C 151.5 126.8 152.2 127.5 152.9 128.1 C 153.7 128.8 154.5 129.6 155.3 130.4 C 157.7 132.5 158.8 135.2 158.9 138.9 "/></g><g transform="translate(295.3 -47.8)"><path d="M 168.4 153.5 C 168.5 151.2 168.9 149.1 169.3 147 C 169.7 144.9 169.9 142.9 169.5 140.9 C 168.7 137 170.4 133.9 172.9 131.2 C 173.7 130.5 174.6 129.8 175.5 129.3 C 176.3 128.8 177 128.2 177.6 127.5 C 178.9 125.9 180.5 124.7 182.5 124.1 C 185.7 123 188.8 123.6 191.7 125.2 C 192.4 125.5 193 126 193.7 126.4 C 194.9 127.2 196 128.1 197.3 128.6 C 201 130.4 201.8 134.4 200.8 137.2 C 199.9 139.8 197.9 141.5 195.2 142 C 194.3 142.2 193.6 142 192.9 141.4 C 192.3 140.9 191.8 140.3 191.2 139.8 C 190.9 139.5 190.7 139.1 190.3 138.8 C 189.5 138 188.5 138 187.5 138.6 C 186.5 139.3 185.5 140 184.5 140.6 C 183.6 141.2 183.2 141.9 183.3 143 C 183.3 145.8 185.8 147.3 188 146.7 C 189.5 146.3 191 146.1 192.5 146.2 C 194.2 146.3 195.3 147.2 195.9 148.7 C 196.6 150.1 196.3 151.5 195.2 152.7 C 194 153.9 192.5 154.7 190.7 154.8 C 188.8 154.8 186.9 155 184.9 155.1 C 183.6 155.2 182.5 156.5 182.8 157.9 C 183 158.9 183.4 159.8 184.3 160.4 C 186 161.4 187.2 161.3 188.9 159.5 C 189.3 159.1 189.7 158.4 190.1 157.9 C 191.7 155.8 194 154.9 196.5 155.8 C 198.6 156.5 199.7 158.1 200.3 160.1 C 201.1 163.1 200 165.5 197.9 167.5 C 195.9 169.5 193.5 170.6 190.6 170.5 C 189.5 170.5 188.5 170.7 187.4 171.1 C 185.5 171.8 183.6 172.2 181.5 172.1 C 179.6 172 177.8 171.6 176.1 170.7 C 174.2 169.8 173 168.3 172.4 166.3 C 171.9 164.6 171.3 163 170.5 161.4 C 169.2 158.9 168.4 156.3 168.4 153.5 "/></g><g transform="translate(295.4 -47.8)"><path d="M 227.1 152.4 C 227.1 152.3 227.1 152 226.9 151.8 C 226.2 150.5 225.7 149.2 225.4 147.8 C 225.3 147.4 225.2 147.1 224.7 147.1 C 224.3 147 224 147.2 223.8 147.6 C 223.6 148 223.5 148.5 223.4 149 C 223.3 150.3 223.2 151.6 222.3 152.8 C 222.1 153.1 222.1 153.5 222.1 153.9 C 222 154.6 222.4 154.8 223.1 154.9 C 223.3 154.9 223.5 155 223.6 155 C 224 155 224.3 155.1 224.7 155.1 C 225.4 155 226 154.5 226.5 154 C 226.9 153.6 227.2 153.2 227.1 152.4 M 237 169.3 C 234.9 169.3 233.1 168.5 231.6 167.1 C 230.9 166.4 230.3 165.7 229.7 164.9 C 228.6 163.7 227.4 163.3 225.9 163.8 C 225.8 163.8 225.7 163.8 225.6 163.9 C 224.3 164.3 223.1 164.3 221.8 164 C 220.7 163.7 219.9 164 219.3 165.1 C 218.9 165.8 218.6 166.5 218.3 167.2 C 217.4 169.4 215.7 170.2 213.5 170.2 C 210.5 170.4 208.1 169.3 206.2 167.2 C 204.4 165.3 203.8 163 204.7 160.4 C 205.5 157.9 207.1 156 209.3 154.6 C 210 154.2 210.7 153.8 211.3 153.5 C 212.6 152.8 213.3 151.8 213.8 150.5 C 214 149.8 214.1 149 214.3 148.3 C 214.7 147 215 145.6 215.4 144.2 C 215.8 143.1 215.9 142 215.5 140.8 C 214.5 137.7 215.3 134.9 217.1 132.3 C 219.1 129.4 221.7 127 225.2 126 C 227.2 125.4 229.2 125.1 231.3 125.7 C 232 125.9 232.7 126.3 233.3 126.6 C 234.5 127.3 235 128.4 234.8 129.7 C 234.7 130.7 234.5 131.6 234.3 132.5 C 234 134 233.6 135.4 233.4 136.9 C 233.2 137.8 233.4 138.8 233.9 139.6 C 235.5 142.1 236.2 144.9 236.9 147.7 C 237.4 149.4 237.9 151.1 238.4 152.8 C 238.9 154.3 239.8 155.5 241.2 156.4 C 241.9 156.8 242.6 157.4 243.3 157.9 C 245.2 159.6 245.7 161.6 244.9 163.9 C 243.7 167.2 240.7 169.3 237 169.3 "/></g><g transform="translate(295.4 -47.8)"><path d="M 266.3 160.7 C 266 161.1 265.8 161.3 265.6 161.6 C 265.2 162.2 264.8 162.8 264.3 163.3 C 263.8 163.9 263.3 164.4 262.7 164.7 C 262 165.1 261.5 165.7 261.2 166.5 C 260.9 167.3 260.6 168 260.2 168.7 C 258.9 171 255.3 172.4 252.4 170.7 C 250.1 169.4 248.6 167.6 248 165 C 247.9 164.2 248 163.4 248 162.6 C 248 161.9 248.2 161.1 248.2 160.4 C 248.1 158.1 249.1 156.2 250.2 154.3 C 250.9 153.2 251.6 152.1 252.7 151.3 C 253.3 151 253.9 150.6 254.5 150.4 C 255.9 149.8 257.1 150.2 258 151.5 C 258.3 152 258.6 152.5 258.9 153 C 259.6 153.8 260.3 153.7 260.6 152.7 C 260.8 152 260.9 151.2 260.9 150.5 C 261 150.2 260.9 149.9 260.9 149.6 C 260.7 147.8 260.7 146 261.3 144.2 C 261.5 143.8 261.5 143.3 261.6 142.8 C 262.1 141.5 261.6 140.3 260.6 139.4 C 260.1 138.8 259.5 138.3 258.8 137.8 C 256.5 136.1 255.9 133.9 256.6 131.2 C 257.4 128 259.4 126 262.7 125.3 C 262.9 125.3 263.2 125.2 263.4 125.2 C 264.9 125.4 266.2 125.1 267.6 124.6 C 269.6 123.8 271.3 124.4 272.7 125.9 C 273.3 126.6 273.7 127.5 274.1 128.3 C 274.8 130 274.9 131.7 274.6 133.5 C 274.4 134.8 274.5 136.1 275.1 137.2 C 276.4 139.9 276.1 142.4 274.8 144.9 C 274.4 145.5 274 146.2 273.7 146.9 C 273.2 148.1 273.6 149.5 274.7 150.3 C 275.4 150.9 276.2 151 276.9 150.3 C 278 149 279.2 147.7 280.2 146.4 C 281 145.3 281.1 144.1 280.8 142.8 C 280.5 142 280.2 141.3 280 140.5 C 278.8 137.5 278.6 134.5 279.3 131.3 C 280.1 127.7 282.4 125.7 285.9 124.8 C 287.4 124.5 288.9 124.5 290.3 125 C 292.1 125.6 293.3 126.7 294 128.5 C 294.5 130 294.7 131.7 294.8 133.4 C 294.8 134 294.5 134.6 294.1 135.1 C 293.7 135.7 293.2 136.2 292.8 136.8 C 292.4 137.3 292.2 137.9 292.3 138.7 C 292.6 140.7 292.7 142.8 292.3 144.9 C 292.2 145.7 292.2 146.5 292.2 147.3 C 292.2 147.6 292.3 148 292.5 148.3 C 292.9 149.1 293.3 149.2 294.1 149 C 294.7 148.8 295.3 148.6 295.9 148.5 C 297.8 148.1 299.3 148.8 300.4 150.3 C 301.8 152.3 302.2 154.5 301.8 156.8 C 301.4 158.6 300.7 160.2 299.6 161.6 C 299 162.4 298.5 163.3 297.9 164.2 C 296.3 166.7 294.3 168.7 291.3 169.4 C 288.1 170.2 284.4 169.1 282.5 165.8 C 282.2 165.2 281.9 164.6 281.5 164 C 281.3 163.5 281.1 163 280.7 162.6 C 280 161.8 278.9 162 278.5 163 C 278.3 163.3 278.3 163.7 278.2 164 C 278 164.9 277.7 165.7 277.4 166.5 C 276.1 170 271.4 170.9 268.8 169.1 C 267.3 168.2 266.6 166.9 266.6 165.2 C 266.7 164.4 266.7 163.7 266.8 162.9 C 266.8 162.2 266.7 161.5 266.3 160.7 "/></g></symbol><symbol id="jicIC" viewBox="239.8 74.2 328.8 51.6" fill="currentColor"><g transform="translate(101.1 6.9)"><path d="M 153.6 68.4 C 155 68.4 156.3 68.7 157.5 69.4 C 159.1 70.1 160.6 70.9 162.1 71.6 C 163.2 72.1 164.2 72.9 164.9 73.9 C 166.2 75.7 166.6 77.6 165.7 79.7 C 165.3 80.6 164.8 81.6 164.2 82.4 C 162.2 84.8 161.5 87.6 161.5 90.6 C 161.5 93.5 161.7 96.3 162.3 99.1 C 162.6 100.6 163.1 102 163.9 103.4 C 164.2 104.1 164.6 104.8 164.8 105.5 C 165.3 106.7 165.2 107.9 164.7 109 C 164.2 110.2 163.5 111.2 162.5 112 C 160.7 113.5 158.8 114.9 156.9 116.3 C 155.9 117.1 154.7 117.6 153.4 117.6 C 151.9 117.7 150.5 117.3 149.3 116.4 C 148.9 116.2 148.5 115.9 148.2 115.6 C 147.2 114.7 146.2 114.1 145 113.6 C 144.8 113.5 144.6 113.4 144.4 113.3 C 141.4 112 139.7 108.7 140.3 105.4 C 140.6 104.1 141.2 103 142.3 102.1 C 143.3 101.4 144.3 100.8 145.5 100.4 C 147.9 99.7 148.8 98.5 148.8 96.1 C 148.8 94.8 148.6 93.5 148.5 92.1 C 148.4 90.7 148.3 89.3 148.3 87.8 C 148.2 85.8 147.5 84.1 146.4 82.5 C 145.8 81.6 145.1 80.8 144.5 79.9 C 143.5 78.4 143.3 76.7 144 75 C 145.3 71.5 147.9 69.5 151.5 68.7 C 152.1 68.5 152.9 68.5 153.6 68.4 "/></g><g transform="translate(102.4 6.9)"><path d="M 188.2 100.6 C 188.7 100.6 189.3 100.6 189.9 100.6 C 190.7 100.6 191.3 100.4 191.8 99.7 C 192.4 99 193 98.3 193.6 97.7 C 194.6 96.5 196 95.9 197.6 95.7 C 198.6 95.6 199.6 95.9 200.5 96.5 C 202.9 98.3 203.8 101.2 202.7 104.1 C 202.2 105.4 201.4 106.4 200.3 107.2 C 199.2 108 198.1 108.7 196.9 109.4 C 195.6 110.2 194.3 111.1 193.2 112.2 C 192.4 112.9 191.5 113.6 190.6 114.2 C 186.9 116.5 183 116.6 179 114.8 C 175.5 113.3 173.2 110.7 172.5 106.9 C 172.1 104.8 171.3 102.8 170.4 100.8 C 167.4 94.4 167.8 88.1 171.5 82 C 172.5 80.3 174 79 175.6 77.8 C 176.1 77.4 176.7 77 177.2 76.6 C 177.8 76.1 178.3 75.5 178.8 75 C 180.4 73.1 182.2 71.4 184.6 70.6 C 186.8 69.8 189 69.7 191.1 70.7 C 193.2 71.6 195.4 72.3 197.7 72.6 C 198.8 72.7 199.8 73.1 200.7 73.7 C 203 75.1 204.3 77 204.4 79.7 C 204.5 83.4 203.3 86.6 200.3 89 C 199 90 197.4 90.7 195.7 90.7 C 193.6 90.6 192.2 89.7 191.3 87.8 C 191 87.4 190.9 86.9 190.6 86.4 C 190.1 85.4 188.9 85.3 188.2 86.2 C 187.7 86.8 187.2 87.5 186.8 88.2 C 186.1 89.2 185.3 90.2 184.2 90.9 C 183.1 91.5 182.6 92.5 182.7 93.8 C 182.9 95.1 183.1 96.4 183.4 97.7 C 183.5 98.4 183.9 99.1 184.3 99.7 C 184.7 100.4 185.5 100.7 186.3 100.7 C 186.9 100.7 187.6 100.7 188.2 100.7 Z M 188.2 100.6 "/></g><g transform="translate(100.1 6.9)"><path d="M 209.1 98.2 C 209.3 96.1 209.5 93.7 209.8 91.3 C 210 89.8 210.2 88.2 210 86.6 C 209.7 83.7 210.6 81.2 212.3 78.9 C 213.2 77.5 214.3 76.4 215.6 75.4 C 216.1 75.1 216.4 74.7 216.8 74.3 C 216.9 74.2 216.9 74.2 217 74.1 C 218.8 71.2 221.7 70.3 224.9 70 C 228.6 69.7 232 70.6 235.1 72.6 C 236.5 73.5 238 74 239.6 74.5 C 242 75.1 243.3 76.7 243.6 79.2 C 243.6 80 243.5 80.9 243.3 81.7 C 242.9 83.5 241.9 85.1 240.4 86.4 C 238.6 88.1 236.3 88.3 234.2 86.9 C 233.4 86.3 232.5 85.5 231.7 84.8 C 231.2 84.4 230.8 83.9 230.3 83.5 C 229.5 82.5 228.3 82.7 227.5 83.4 C 227.1 83.7 226.8 84.1 226.5 84.4 C 225.9 85 225.4 85.7 224.7 86.2 C 223.4 87.3 223.6 89.9 225.6 90.5 C 226.9 90.9 228.2 90.7 229.6 90.4 C 230.7 90.2 231.7 89.8 232.8 89.6 C 234.2 89.4 235.4 89.7 236.5 90.5 C 237.3 91.2 237.7 92.2 237.4 93.3 C 236.9 95.3 235.9 97.2 234.2 98.5 C 233.3 99.3 232.1 99.7 230.9 99.7 C 230.1 99.7 229.3 99.7 228.4 99.6 C 227.6 99.5 226.8 99.5 226 99.8 C 224.5 100.2 224 101.5 224.8 102.9 C 225.9 104.8 227.5 104.4 228.5 103.4 C 228.7 103.2 228.8 103.1 228.9 102.9 C 229.1 102.7 229.3 102.5 229.5 102.3 C 230.7 101.1 232.1 100.6 233.8 100.6 C 238 100.5 240.2 103.5 240.5 106.2 C 240.9 109.1 239.9 111.5 237.4 113.2 C 236 114.3 234.3 114.8 232.5 114.9 C 231.2 115.1 229.9 115 228.6 115.2 C 227.6 115.3 226.6 115.5 225.6 115.7 C 224 116.1 222.4 116.3 220.7 115.8 C 218.7 115.2 217.1 114.1 215.9 112.4 C 215.2 111.4 214.4 110.5 213.5 109.7 C 210.9 107.6 209.8 104.8 209.4 101.7 C 209.2 100.6 209.2 99.6 209.1 98.2 "/></g><g transform="translate(-30 0)"><g transform="translate(295.7 -47.8)"><path d="M 98.3 150.5 C 98.2 151.8 98.2 153 98.7 154.2 C 99.3 155.6 100.2 156.4 101.7 156.6 C 102.7 156.8 103.6 157 104.6 157.3 C 106 157.6 106.7 157.2 107.3 156 C 107.7 155.2 107.9 154.4 108.3 153.6 C 109.4 151.2 111.3 150.1 113.9 150 C 116.4 150 118.6 151.9 119.1 154.4 C 119.7 157.5 118.8 160.3 116.9 162.7 C 115.6 164.4 114 165.6 112 166.4 C 111.6 166.6 111.1 166.8 110.7 166.9 C 109.2 167.4 107.9 168.1 106.6 169 C 104.9 170.2 103.2 171.1 101.1 171.5 C 98.6 172.1 96.2 172 93.9 170.9 C 91.8 169.9 90.4 168.4 89.6 166.2 C 89.5 165.9 89.4 165.5 89.3 165.1 C 88.8 163.4 88 161.8 86.9 160.3 C 84.5 156.9 83.2 153.1 83.1 148.9 C 83 145.2 84.1 141.8 86.1 138.7 C 87.3 136.8 88.5 134.9 89.8 133 C 91.9 129.7 94.9 128 98.6 127.5 C 99.1 127.4 99.6 127.3 100.2 127.3 C 101.3 127.2 102.1 126.6 102.9 125.8 C 104.3 124.4 106 123.6 108 123.8 C 108.9 123.9 109.8 124.1 110.6 124.5 C 111.6 124.9 112.7 125.3 113.8 125.6 C 114.8 125.9 115.8 126.2 116.7 126.7 C 118.6 127.9 119.6 129.8 120 131.9 C 120.9 137.3 119.2 141.6 115 145 C 114 145.8 112.9 146.2 111.7 146.4 C 109.9 146.7 108.5 146 107.5 144.5 C 107.1 144 106.9 143.3 106.6 142.7 C 106.4 142.4 106.3 142 106.1 141.6 C 105.5 140.7 104.6 140.7 103.9 141.5 C 103.7 141.8 103.5 142.1 103.4 142.4 C 102.6 143.8 101.6 145 100.1 145.8 C 98.9 146.4 98.3 147.5 98.3 148.8 C 98.3 149.4 98.3 150 98.3 150.5 "/></g><g transform="translate(295.9 -47.8)"><path d="M 145.2 143.2 C 146.6 143.2 148.3 142.1 148.8 140.4 C 148.9 140 148.7 139.4 148.6 138.9 C 148.5 138.6 148.2 138.4 148.1 138.1 C 147.8 137.4 147.2 137.2 146.5 137.2 C 144.4 137.2 142.5 139 142.4 141 C 142.4 141.6 142.6 142.1 143.1 142.4 C 143.7 142.9 144.4 143.2 145.2 143.2 M 158.9 138.9 C 159 140.8 158 142.7 156.2 144.2 C 155 145.3 153.6 146.2 152.1 146.8 C 150.9 147.3 150.1 148 149.4 149 C 148.4 150.4 148.4 151.9 149.3 153.3 C 150.1 154.4 151 155.3 151.9 156.2 C 152.3 156.6 152.8 156.5 153.2 156.4 C 153.9 156.1 154.3 155.6 154.4 155 C 154.5 154.6 154.5 154.2 154.5 153.8 C 154.5 152.3 155.2 151.4 156.7 151.1 C 158.2 150.7 159.7 150.7 161.2 151 C 164 151.5 165.7 154.1 165.4 156.9 C 165.4 157.7 165.1 158.4 164.9 159.1 C 164.6 160.4 164 161.8 163.7 163.1 C 163 166.4 161.1 168.4 157.9 169.3 C 156.4 169.7 154.8 170.1 153.2 170 C 151.8 169.9 150.4 169.6 149.1 168.9 C 148.4 168.4 147.8 167.9 147.2 167.3 C 146.5 166.6 145.7 165.9 144.8 165.4 C 143.1 164.5 141.7 163.3 140.8 161.6 C 140.6 161.3 140.4 161 140.1 160.7 C 139.9 160.4 139.7 160.2 139.5 160 C 138.7 159.6 138.1 160 138.1 160.8 C 138.1 161.6 138.2 162.4 138.3 163.2 C 138.4 164.4 138.3 165.5 138 166.7 C 137.6 168.2 136.7 169.4 135.3 170.1 C 134.1 170.7 132.9 171.3 131.6 171.3 C 128.6 171.4 126.3 170 124.5 167.7 C 123.1 165.7 122.9 163.5 123.5 161.2 C 123.9 159.9 124.4 158.5 125.1 157.2 C 126.2 155.2 127 153.1 127.2 150.8 C 127.3 149.5 127.8 148.3 128.3 147.1 C 128.6 146.4 129 145.7 129.3 144.9 C 130 143.2 130 141.4 129.2 139.7 C 128.8 138.7 128.3 137.8 127.9 136.9 C 127.4 135.7 126.9 134.4 126.8 133.1 C 126.2 129.3 128.9 125.3 132.7 124.5 C 134 124.3 135.2 124.5 136.5 124.9 C 137.4 125.3 138.2 125.3 139.2 125.1 C 140.6 124.8 142.1 124.5 143.5 124.4 C 146.1 124.2 148.6 124.7 150.7 126.3 C 151.5 126.8 152.2 127.5 152.9 128.1 C 153.7 128.8 154.5 129.6 155.3 130.4 C 157.7 132.5 158.8 135.2 158.9 138.9 "/></g><g transform="translate(295.3 -47.8)"><path d="M 168.4 153.5 C 168.5 151.2 168.9 149.1 169.3 147 C 169.7 144.9 169.9 142.9 169.5 140.9 C 168.7 137 170.4 133.9 172.9 131.2 C 173.7 130.5 174.6 129.8 175.5 129.3 C 176.3 128.8 177 128.2 177.6 127.5 C 178.9 125.9 180.5 124.7 182.5 124.1 C 185.7 123 188.8 123.6 191.7 125.2 C 192.4 125.5 193 126 193.7 126.4 C 194.9 127.2 196 128.1 197.3 128.6 C 201 130.4 201.8 134.4 200.8 137.2 C 199.9 139.8 197.9 141.5 195.2 142 C 194.3 142.2 193.6 142 192.9 141.4 C 192.3 140.9 191.8 140.3 191.2 139.8 C 190.9 139.5 190.7 139.1 190.3 138.8 C 189.5 138 188.5 138 187.5 138.6 C 186.5 139.3 185.5 140 184.5 140.6 C 183.6 141.2 183.2 141.9 183.3 143 C 183.3 145.8 185.8 147.3 188 146.7 C 189.5 146.3 191 146.1 192.5 146.2 C 194.2 146.3 195.3 147.2 195.9 148.7 C 196.6 150.1 196.3 151.5 195.2 152.7 C 194 153.9 192.5 154.7 190.7 154.8 C 188.8 154.8 186.9 155 184.9 155.1 C 183.6 155.2 182.5 156.5 182.8 157.9 C 183 158.9 183.4 159.8 184.3 160.4 C 186 161.4 187.2 161.3 188.9 159.5 C 189.3 159.1 189.7 158.4 190.1 157.9 C 191.7 155.8 194 154.9 196.5 155.8 C 198.6 156.5 199.7 158.1 200.3 160.1 C 201.1 163.1 200 165.5 197.9 167.5 C 195.9 169.5 193.5 170.6 190.6 170.5 C 189.5 170.5 188.5 170.7 187.4 171.1 C 185.5 171.8 183.6 172.2 181.5 172.1 C 179.6 172 177.8 171.6 176.1 170.7 C 174.2 169.8 173 168.3 172.4 166.3 C 171.9 164.6 171.3 163 170.5 161.4 C 169.2 158.9 168.4 156.3 168.4 153.5 "/></g><g transform="translate(295.4 -47.8)"><path d="M 227.1 152.4 C 227.1 152.3 227.1 152 226.9 151.8 C 226.2 150.5 225.7 149.2 225.4 147.8 C 225.3 147.4 225.2 147.1 224.7 147.1 C 224.3 147 224 147.2 223.8 147.6 C 223.6 148 223.5 148.5 223.4 149 C 223.3 150.3 223.2 151.6 222.3 152.8 C 222.1 153.1 222.1 153.5 222.1 153.9 C 222 154.6 222.4 154.8 223.1 154.9 C 223.3 154.9 223.5 155 223.6 155 C 224 155 224.3 155.1 224.7 155.1 C 225.4 155 226 154.5 226.5 154 C 226.9 153.6 227.2 153.2 227.1 152.4 M 237 169.3 C 234.9 169.3 233.1 168.5 231.6 167.1 C 230.9 166.4 230.3 165.7 229.7 164.9 C 228.6 163.7 227.4 163.3 225.9 163.8 C 225.8 163.8 225.7 163.8 225.6 163.9 C 224.3 164.3 223.1 164.3 221.8 164 C 220.7 163.7 219.9 164 219.3 165.1 C 218.9 165.8 218.6 166.5 218.3 167.2 C 217.4 169.4 215.7 170.2 213.5 170.2 C 210.5 170.4 208.1 169.3 206.2 167.2 C 204.4 165.3 203.8 163 204.7 160.4 C 205.5 157.9 207.1 156 209.3 154.6 C 210 154.2 210.7 153.8 211.3 153.5 C 212.6 152.8 213.3 151.8 213.8 150.5 C 214 149.8 214.1 149 214.3 148.3 C 214.7 147 215 145.6 215.4 144.2 C 215.8 143.1 215.9 142 215.5 140.8 C 214.5 137.7 215.3 134.9 217.1 132.3 C 219.1 129.4 221.7 127 225.2 126 C 227.2 125.4 229.2 125.1 231.3 125.7 C 232 125.9 232.7 126.3 233.3 126.6 C 234.5 127.3 235 128.4 234.8 129.7 C 234.7 130.7 234.5 131.6 234.3 132.5 C 234 134 233.6 135.4 233.4 136.9 C 233.2 137.8 233.4 138.8 233.9 139.6 C 235.5 142.1 236.2 144.9 236.9 147.7 C 237.4 149.4 237.9 151.1 238.4 152.8 C 238.9 154.3 239.8 155.5 241.2 156.4 C 241.9 156.8 242.6 157.4 243.3 157.9 C 245.2 159.6 245.7 161.6 244.9 163.9 C 243.7 167.2 240.7 169.3 237 169.3 "/></g><g transform="translate(295.4 -47.8)"><path d="M 266.3 160.7 C 266 161.1 265.8 161.3 265.6 161.6 C 265.2 162.2 264.8 162.8 264.3 163.3 C 263.8 163.9 263.3 164.4 262.7 164.7 C 262 165.1 261.5 165.7 261.2 166.5 C 260.9 167.3 260.6 168 260.2 168.7 C 258.9 171 255.3 172.4 252.4 170.7 C 250.1 169.4 248.6 167.6 248 165 C 247.9 164.2 248 163.4 248 162.6 C 248 161.9 248.2 161.1 248.2 160.4 C 248.1 158.1 249.1 156.2 250.2 154.3 C 250.9 153.2 251.6 152.1 252.7 151.3 C 253.3 151 253.9 150.6 254.5 150.4 C 255.9 149.8 257.1 150.2 258 151.5 C 258.3 152 258.6 152.5 258.9 153 C 259.6 153.8 260.3 153.7 260.6 152.7 C 260.8 152 260.9 151.2 260.9 150.5 C 261 150.2 260.9 149.9 260.9 149.6 C 260.7 147.8 260.7 146 261.3 144.2 C 261.5 143.8 261.5 143.3 261.6 142.8 C 262.1 141.5 261.6 140.3 260.6 139.4 C 260.1 138.8 259.5 138.3 258.8 137.8 C 256.5 136.1 255.9 133.9 256.6 131.2 C 257.4 128 259.4 126 262.7 125.3 C 262.9 125.3 263.2 125.2 263.4 125.2 C 264.9 125.4 266.2 125.1 267.6 124.6 C 269.6 123.8 271.3 124.4 272.7 125.9 C 273.3 126.6 273.7 127.5 274.1 128.3 C 274.8 130 274.9 131.7 274.6 133.5 C 274.4 134.8 274.5 136.1 275.1 137.2 C 276.4 139.9 276.1 142.4 274.8 144.9 C 274.4 145.5 274 146.2 273.7 146.9 C 273.2 148.1 273.6 149.5 274.7 150.3 C 275.4 150.9 276.2 151 276.9 150.3 C 278 149 279.2 147.7 280.2 146.4 C 281 145.3 281.1 144.1 280.8 142.8 C 280.5 142 280.2 141.3 280 140.5 C 278.8 137.5 278.6 134.5 279.3 131.3 C 280.1 127.7 282.4 125.7 285.9 124.8 C 287.4 124.5 288.9 124.5 290.3 125 C 292.1 125.6 293.3 126.7 294 128.5 C 294.5 130 294.7 131.7 294.8 133.4 C 294.8 134 294.5 134.6 294.1 135.1 C 293.7 135.7 293.2 136.2 292.8 136.8 C 292.4 137.3 292.2 137.9 292.3 138.7 C 292.6 140.7 292.7 142.8 292.3 144.9 C 292.2 145.7 292.2 146.5 292.2 147.3 C 292.2 147.6 292.3 148 292.5 148.3 C 292.9 149.1 293.3 149.2 294.1 149 C 294.7 148.8 295.3 148.6 295.9 148.5 C 297.8 148.1 299.3 148.8 300.4 150.3 C 301.8 152.3 302.2 154.5 301.8 156.8 C 301.4 158.6 300.7 160.2 299.6 161.6 C 299 162.4 298.5 163.3 297.9 164.2 C 296.3 166.7 294.3 168.7 291.3 169.4 C 288.1 170.2 284.4 169.1 282.5 165.8 C 282.2 165.2 281.9 164.6 281.5 164 C 281.3 163.5 281.1 163 280.7 162.6 C 280 161.8 278.9 162 278.5 163 C 278.3 163.3 278.3 163.7 278.2 164 C 278 164.9 277.7 165.7 277.4 166.5 C 276.1 170 271.4 170.9 268.8 169.1 C 267.3 168.2 266.6 166.9 266.6 165.2 C 266.7 164.4 266.7 163.7 266.8 162.9 C 266.8 162.2 266.7 161.5 266.3 160.7 "/></g></g></symbol></defs></svg>
+
+<header class="top">
+  <div class="wrap bar">
+    <span class="it">JOHNS ICE CREAM — BROSS TOKYO</span>
+    <nav class="links">
+      <a href="#lab" class="hide-sm t" data-en="Make yours">つくる</a>
+      <a href="#menu" class="t" data-en="Menu">メニュー</a>
+      <a href="#visit" class="t" data-en="Visit">店舗</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-l="ja" aria-pressed="true">JP</button>
+        <button type="button" data-l="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+<svg class="drip hd" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true"><path fill="var(--band)" d="M0,0 L0,10 L20.0,10 C27.5,10 25.8,14.0 26.4,22.7 A5.2,5.2 0 0 0 36.8,22.7 C37.4,14.0 35.6,10 43.2,10 L110.5,10 C116.7,10 115.3,14.0 115.8,33.6 A4.3,4.3 0 0 0 124.4,33.6 C124.9,14.0 123.4,10 129.7,10 L178.4,10 C184.6,10 183.2,14.0 183.6,32.9 A4.3,4.3 0 0 0 192.1,32.9 C192.6,14.0 191.2,10 197.3,10 L224.8,10 C232.9,10 231.0,14.0 231.6,20.2 A5.6,5.6 0 0 0 242.9,20.2 C243.5,14.0 241.6,10 249.7,10 L280.6,10 C288.7,10 286.8,14.0 287.4,39.9 A5.6,5.6 0 0 0 298.6,39.9 C299.2,14.0 297.4,10 305.4,10 L338.5,10 C345.5,10 343.9,14.0 344.4,35.5 A4.9,4.9 0 0 0 354.1,35.5 C354.6,14.0 353.0,10 360.0,10 L446.6,10 C455.5,10 453.4,14.0 454.1,28.2 A6.1,6.1 0 0 0 466.4,28.2 C467.1,14.0 465.0,10 473.9,10 L562.3,10 C568.4,10 567.0,14.0 567.5,42.1 A4.2,4.2 0 0 0 575.9,42.1 C576.4,14.0 575.0,10 581.1,10 L624.9,10 C631.5,10 630.0,14.0 630.5,22.5 A4.6,4.6 0 0 0 639.6,22.5 C640.1,14.0 638.6,10 645.2,10 L690.3,10 C700.3,10 698.0,14.0 698.8,21.7 A7.0,7.0 0 0 0 712.8,21.7 C713.5,14.0 711.2,10 721.3,10 L784.1,10 C793.3,10 791.2,14.0 791.9,27.3 A6.4,6.4 0 0 0 804.6,27.3 C805.3,14.0 803.2,10 812.3,10 L872.9,10 C879.1,10 877.7,14.0 878.2,21.3 A4.3,4.3 0 0 0 886.7,21.3 C887.2,14.0 885.8,10 891.9,10 L930.3,10 C939.7,10 937.6,14.0 938.3,28.6 A6.5,6.5 0 0 0 951.3,28.6 C952.0,14.0 949.8,10 959.2,10 L1004.6,10 C1013.5,10 1011.5,14.0 1012.2,29.6 A6.2,6.2 0 0 0 1024.5,29.6 C1025.2,14.0 1023.1,10 1032.0,10 L1076.5,10 C1086.5,10 1084.2,14.0 1084.9,35.3 A6.9,6.9 0 0 0 1098.8,35.3 C1099.5,14.0 1097.2,10 1107.2,10 L1148.1,10 C1156.9,10 1154.9,14.0 1155.5,31.5 A6.1,6.1 0 0 0 1167.8,31.5 C1168.5,14.0 1166.4,10 1175.3,10 L1200,10 L1200,0 Z"/></svg>
+
+<main>
+  <div class="wrap hero">
+    <div class="logoRow">
+      <svg class="herologo" role="img" aria-label="JOHNS ICE CREAM"><use href="#jic"/></svg>
+      <div class="sticker" aria-hidden="true"><div><b id="stkPrice">¥650</b><span class="t" data-en="TOPPINGS&lt;br&gt;UNLIMITED">トッピング<br>乗せ放題</span></div></div>
+    </div>
+    <div class="by"><span class="it">From Cookieboy &amp; Sugiyama Farm</span></div>
+    <h1 class="t" data-en="Make your own ice cream before you order.">あなたのアイスクリームを<br>作ってみよう！</h1>
+    <p class="t" data-en="Pick a size, stack flavors in any order, add toppings, and see the colors together. And show your order card to our staff.">サイズを選んで、フレーバーを好きな順番に重ねて、トッピングをのせて。色の組み合わせが決まったら、オーダーカードを見せるだけ。</p>
+    <div class="shopsw" role="group" aria-label="Shop"><button type="button" data-s="nm"><span class="t" data-en="Nakameguro">中目黒店</span></button><button type="button" data-s="sb"><span class="t" data-en="SHIBUYA109">SHIBUYA109店</span></button></div>
+  </div>
+
+  <div class="wrap lab" id="lab">
+    <div class="stagebox">
+      <div class="stagehead"><div class="row"><span class="it" id="stTag">Nakameguro</span><span class="pricetag num" id="stPrice"></span></div><svg class="drip" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true"><path fill="var(--band)" d="M0,0 L0,10 L26.6,10 C40.2,10 37.0,14.0 38.1,34.4 A9.4,9.4 0 0 0 56.9,34.4 C57.9,14.0 54.8,10 68.4,10 L195.9,10 C206.4,10 204.0,14.0 204.8,40.9 A7.3,7.3 0 0 0 219.3,40.9 C220.1,14.0 217.7,10 228.2,10 L395.1,10 C407.6,10 404.7,14.0 405.7,31.5 A8.6,8.6 0 0 0 422.9,31.5 C423.8,14.0 421.0,10 433.4,10 L531.7,10 C540.8,10 538.7,14.0 539.4,30.1 A6.3,6.3 0 0 0 552.1,30.1 C552.8,14.0 550.7,10 559.8,10 L700.0,10 C709.6,10 707.4,14.0 708.1,41.6 A6.6,6.6 0 0 0 721.3,41.6 C722.1,14.0 719.9,10 729.4,10 L827.3,10 C837.9,10 835.5,14.0 836.3,19.8 A7.3,7.3 0 0 0 851.0,19.8 C851.8,14.0 849.3,10 859.9,10 L1049.6,10 C1063.5,10 1060.3,14.0 1061.4,40.9 A9.6,9.6 0 0 0 1080.7,40.9 C1081.7,14.0 1078.5,10 1092.4,10 L1200,10 L1200,0 Z"/></svg></div>
+      <svg id="stage" viewBox="0 60 300 380" role="img" aria-label="Preview of your ice cream">
+        <defs>
+          <radialGradient id="shade" cx="34%" cy="26%" r="80%">
+            <stop offset="0" stop-color="#fff" stop-opacity=".5"/>
+            <stop offset=".3" stop-color="#fff" stop-opacity=".08"/>
+            <stop offset=".7" stop-color="#000" stop-opacity="0"/>
+            <stop offset="1" stop-color="#000" stop-opacity=".24"/>
+          </radialGradient>
+          <pattern id="waffle" width="15" height="15" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect width="15" height="15" fill="var(--cone)"/>
+            <path d="M0 0H15M0 0V15" stroke="var(--coneLine)" stroke-width="2.4"/>
+          </pattern>
+          <filter id="soft" x="-30%" y="-100%" width="160%" height="300%"><feGaussianBlur stdDeviation="6"/></filter>
+        </defs>
+        <ellipse cx="150" cy="438" rx="78" ry="8" fill="#000" opacity=".13" filter="url(#soft)"/>
+        <g id="sway"><g id="stack"></g></g>
+      </svg>
+      <div class="stagecap"><span class="t" data-en="← drag to wobble →">← ドラッグでゆらゆら →</span><span class="t" data-en="Colors are a guide">色はイメージです</span></div>
+    </div>
+
+    <div class="ctrl">
+      <div class="blk">
+        <div class="blkhead"><span class="step">1</span><h2 class="t" data-en="Size">サイズ</h2></div>
+        <div class="opts" id="sizeSeg">
+          <button type="button" class="opt" id="sz1" data-z="1"><svg viewBox="0 0 34 42" aria-hidden="true"><path d="M10 22H24L17 41Z" fill="var(--cone)"/><circle cx="17" cy="16" r="9" fill="#f2b6c5"/></svg><span><b class="t" data-en="Single">シングル</b><small class="num">¥850</small></span></button>
+          <button type="button" class="opt" id="sz2" data-z="2"><svg viewBox="0 0 34 42" aria-hidden="true"><path d="M10 26H24L17 41Z" fill="var(--cone)"/><circle cx="17" cy="21" r="8" fill="#e84a62"/><circle cx="17" cy="9" r="8" fill="#9fe0cc"/></svg><span><b class="t" data-en="Double">ダブル</b><small class="num">¥1,550</small></span></button>
+          <button type="button" class="opt" id="sz3" data-z="3"><svg viewBox="0 0 34 42" aria-hidden="true"><path d="M11 30H23L17 42Z" fill="var(--cone)"/><circle cx="17" cy="26" r="7" fill="#2a2625"/><circle cx="17" cy="16" r="7" fill="#f1d68f"/><circle cx="17" cy="6" r="6.5" fill="#b38abd"/></svg><span><b class="t" data-en="Triple">トリプル</b><small class="num">¥2,000</small></span></button>
+        </div>
+      </div>
+
+      <div class="blk">
+        <div class="blkhead"><span class="step">2</span><h2 class="t" data-en="Flavors &amp; order">フレーバーと順番</h2><span class="sm t" data-en="Tap a row, then a flavor">段を選んでからタップ</span></div>
+        <div class="presetbox">
+          <p class="plabel t" data-en="Color recommendations">おすすめの色の組み合わせ</p>
+          <div class="presets" id="presets" aria-label="Color recommendations"></div>
+        </div>
+        <ol class="slots" id="slots"></ol>
+        <div class="fls" id="fls"></div>
+        <p class="note t" data-only="sb" hidden data-en="Flavors change regularly. This is the current Shibuya109 menu; check Instagram for today's lineup.">フレーバーは定期的に入れ替わります。こちらはSHIBUYA109店のメニューです。当日のラインナップはInstagramでチェックしてください。</p>
+        <p class="note t" data-only="nm" data-en="Flavors change regularly. This is the current Nakameguro menu; check Instagram for today's lineup.">フレーバーは定期的に入れ替わります。こちらは中目黒店のメニューです。当日のラインナップはInstagramでチェックしてください。</p>
+      </div>
+
+      <div class="blk">
+        <div class="blkhead"><span class="step">3</span><h2 class="t" data-en="Cone or cup">コーン or カップ</h2><span class="sm t" data-en="Same price">料金は同じ</span></div>
+        <div class="opts" id="contSeg">
+          <button type="button" class="opt" id="cCone" data-c="cone"><svg viewBox="0 0 34 42" aria-hidden="true"><path d="M7 14H27L17 41Z" fill="var(--cone)"/><rect x="5" y="10" width="24" height="6" rx="3" fill="var(--coneHi)"/></svg><span><b class="t" data-en="Black cone">ブラックコーン</b><small class="sm t" data-en="Charcoal waffle">竹炭のワッフルコーン</small></span></button>
+          <button type="button" class="opt" id="cCup" data-c="cup"><svg viewBox="0 0 34 42" aria-hidden="true"><path d="M5 16H29L25 38Q24.5 40 23 40H11Q9.5 40 9 38Z" fill="var(--cup)" stroke="var(--cupLine)" stroke-width="1.5" stroke-linejoin="round"/><rect x="3.5" y="13" width="27" height="4.5" rx="2.25" fill="var(--cupLip)" stroke="var(--cup)" stroke-width="1"/><use href="#jicJ" x="10" y="22" width="14" height="3.5" style="color:#fff"/><use href="#jicI" x="13.5" y="27" width="7" height="3.5" style="color:#fff"/><use href="#jicC" x="9.5" y="32" width="15" height="3.5" style="color:#fff"/></svg><span><b class="t" data-en="Cup">カップ</b><small class="sm t" data-en="Paper cup">紙カップ</small></span></button>
+        </div>
+      </div>
+
+      <div class="blk">
+        <div class="blkhead"><span class="step">4</span><h2 class="t" data-en="Toppings">トッピング</h2><span class="sm num" id="topPrice" style="font-size:16px;color:var(--ink)">+¥650</span></div>
+        <div class="tops" id="tops"></div>
+        <p class="note t" style="color:var(--ink);font-weight:700" data-en="These are just a few. We have many more toppings in the shop.">ここにあるのは一例です。店内には、これ以外にも数多くのトッピングをご用意しています。</p>
+        <p class="note t" data-only="sb" hidden data-en="Toppings are free at Shibuya109: top it with anything from the snack table, as much as you like. Toppings are for eating in the shop.">SHIBUYA109店はトッピング無料。テーブルのお菓子が乗せ放題です。トッピングは店内でのお召し上がりが基本です。</p>
+        <p class="note t" data-only="nm" data-en="One price: top it with anything from the snack table, and eat as much as you like. Toppings are for eating in the shop.">¥650で、テーブルのお菓子がトッピングし放題・食べ放題。いくつ選んでも同じ料金です。トッピングは店内でのお召し上がりが基本です。</p>
+      </div>
+
+      <div class="sum" aria-live="polite">
+        <div class="lines" id="lines"></div>
+        <div class="total"><span class="t" data-en="Total (tax incl.)">合計（税込）</span><b id="total">¥0</b></div>
+        <button class="cta t" id="mk" type="button" data-en="Make my order card">オーダーカードをつくる</button>
+        <p class="warn" id="warn"></p>
+      </div>
+      <div class="ov" id="ov" hidden>
+  <div class="card" role="dialog" aria-modal="true" aria-label="Order card">
+    <div class="vis" id="ocVis"><span class="no it" id="ocNo"></span><span class="hd">ORDER CARD</span></div>
+    <div class="bd">
+      <ol id="ocList"></ol>
+      <div class="tt"><span class="t" data-en="Total (tax incl.)">合計（税込）</span><b id="ocTotal"></b></div>
+    </div>
+    <div class="ft">
+      <p class="t" data-en="Show this screen at the counter. Take a screenshot to keep it.">この画面をレジでスタッフに見せてください。スクリーンショットで保存もできます。</p>
+      <p class="ocmsg" id="toast" hidden></p>
+      <div class="btns"><button type="button" id="ocCopy" class="t" data-en="Copy order">内容をコピー</button><button type="button" id="ocClose" class="pri t" data-en="Close">とじる</button></div>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+
+  <section class="sec" id="menu">
+    <div class="wrap">
+      <div class="sechead"><h2>Menu</h2><div class="shopsw" role="group" aria-label="Shop menu"><button type="button" data-s="nm"><span class="t" data-en="Nakameguro">中目黒店</span></button><button type="button" data-s="sb"><span class="t" data-en="SHIBUYA109">SHIBUYA109店</span></button></div></div>
+      <div class="cards" data-only="nm">
+        <div class="box">
+          <h3>Size</h3>
+          <dl class="rows">
+            <div><dt>Single<small>1 scoop · シングル</small></dt><dd>¥850</dd></div>
+            <div><dt>Double<small>2 scoops · ダブル</small></dt><dd>¥1,550</dd></div>
+            <div><dt>Triple<small>3 scoops · トリプル</small></dt><dd>¥2,000</dd></div>
+            <div><dt>Toppings<small>テーブルのお菓子が乗せ放題・食べ放題</small></dt><dd>¥650</dd></div>
+          </dl>
+          <p class="note t" data-en="Some flavors add ¥50 or ¥100 per scoop.">一部のフレーバーは1スクープごとに +¥50 / +¥100。</p>
+        </div>
+        <div class="box">
+          <h3>Vegan &amp; Dogs</h3>
+          <dl class="rows">
+            <div><dt>Strawberry soy milk yogurt<small>ストロベリー豆乳ヨーグルト</small></dt><dd>¥850</dd></div>
+            <div><dt>Deep Banana Maple<small>完熟バナナ &amp; メープル</small></dt><dd>¥850</dd></div>
+          </dl>
+          <p class="note t" data-en="Soy-milk gelato with no sugar and no animal fat. The dog version comes with a gluten-free cookie.">豆乳から作った、シュガー・動物性脂肪フリーのヴィーガンジェラート。ワンちゃん用はグルテンフリークッキー付き。</p>
+        </div>
+        <div class="box">
+          <h3>Drinks</h3>
+          <dl class="rows">
+            <div><dt>Coffee<small>hot / ice</small></dt><dd>¥500</dd></div>
+            <div><dt>Jasmine tea<small>hot / ice</small></dt><dd>¥500</dd></div>
+            <div><dt>Cinnamon apple tea<small>hot / ice</small></dt><dd>¥500</dd></div>
+            <div><dt>Cola · Orange juice<small>Ginger ale · Sparkling water</small></dt><dd>¥400</dd></div>
+            <div><dt>Wine red / white · Highball</dt><dd>¥800</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="cards" data-only="sb" hidden>
+        <div class="box">
+          <h3>Size</h3>
+          <dl class="rows">
+            <div><dt>Single<small>1 scoop · シングル</small></dt><dd>¥680</dd></div>
+            <div><dt>Double<small>2 scoops · ダブル</small></dt><dd>¥980</dd></div>
+            <div><dt>Triple<small>3 scoops · トリプル</small></dt><dd>¥1,230</dd></div>
+            <div><dt>Toppings<small>テーブルのお菓子が乗せ放題</small></dt><dd>FREE</dd></div>
+          </dl>
+          <p class="note t" data-en="2 scoops add ¥300 and 3 scoops add ¥550 to the single price. No flavor surcharges.">2スクープは +¥300、3スクープは +¥550（シングル料金に追加）。フレーバーの追加料金はありません。</p>
+        </div>
+        <div class="box">
+          <h3>Flavors</h3>
+          <ul class="flist" id="flist109"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="visit" style="padding-top:0">
+    <div class="wrap">
+      <div class="sechead"><h2>Visit</h2><a class="lnk right" href="https://www.instagram.com/johns_icecream/" target="_blank" rel="noopener">Instagram @johns_icecream ↗</a></div>
+      <div class="cards">
+        <div class="box">
+          <h3 class="shopnm">Nakameguro</h3>
+          <dl class="info">
+            <div><dt class="t" data-en="Address">住所</dt><dd class="t" data-en="Hills Daikanyama 1F, 1-8-30 Kamimeguro, Meguro-ku, Tokyo 153-0051">〒153-0051 東京都目黒区上目黒1-8-30 ヒルズ代官山 1階</dd></div>
+            <div><dt class="t" data-en="Access">アクセス</dt><dd class="t" data-en="5 min walk from Nakameguro Station (Tokyu Toyoko / Hibiya Line)">東急東横線・東京メトロ日比谷線「中目黒」駅から徒歩5分</dd></div>
+            <div><dt class="t" data-en="Hours">営業時間</dt><dd class="t" data-en="11:00–18:00 · Sat, Sun &amp; holidays 10:00–18:00&lt;br&gt;Closed Tuesdays and the 3rd Monday">11:00–18:00（土日祝 10:00–18:00）<br>定休日：火曜・第3月曜</dd></div>
+          </dl>
+          <div class="lnks"><a class="lnk t" href="#nakameguro" data-en="Make yours here">このお店でつくる</a><a class="lnk alt t" href="https://www.google.com/maps/search/?api=1&amp;query=JOHNS+ICE+CREAM+%E4%B8%AD%E7%9B%AE%E9%BB%92" target="_blank" rel="noopener" data-en="Google Maps ↗">Googleマップ ↗</a></div>
+        </div>
+        <div class="box">
+          <h3 class="shopnm">Shibuya109</h3>
+          <dl class="info">
+            <div><dt class="t" data-en="Address">住所</dt><dd class="t" data-en="SHIBUYA109 B2F, 2-29-1 Dogenzaka, Shibuya-ku, Tokyo 150-0043">〒150-0043 東京都渋谷区道玄坂2-29-1 SHIBUYA109 B2F</dd></div>
+            <div><dt class="t" data-en="Hours">営業時間</dt><dd class="t" data-en="10:00–21:00 · Open every day">10:00–21:00（年中無休）</dd></div>
+            <div><dt class="t" data-en="Prices">料金</dt><dd class="t" data-en="Single ¥680 · toppings free. The lineup differs from Nakameguro.">シングル ¥680・トッピング無料。中目黒店とはフレーバーが異なります。</dd></div>
+          </dl>
+          <div class="lnks"><a class="lnk t" href="#shibuya109" data-en="Make yours here">このお店でつくる</a><a class="lnk alt t" href="https://www.google.com/maps/search/?api=1&amp;query=SHIBUYA109+JOHNS+ICE+CREAM" target="_blank" rel="noopener" data-en="Google Maps ↗">Googleマップ ↗</a></div>
+        </div>
+      </div>
+      <ul class="rules">
+        <li class="t" data-en="When it's busy, seating is limited to 25 minutes from when your gelato is served.">混雑時は、ジェラートをお出ししてから25分制になります。</li>
+        <li class="t" data-en="Topping orders are made to enjoy in the shop. Takeout is possible, but we don't offer takeout packaging.">トッピングのご注文は、店内でお召し上がりいただくスタイルが基本です。お持ち帰りもできますが、専用のパッケージはご用意していません。</li>
+        <li class="t" data-en="The preview is a guide. Real scoops vary a little in color and shape.">プレビューはイメージです。実際の色や形は少し異なります。</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<svg class="drip up" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true"><path fill="var(--band)" d="M0,0 L0,10 L20.0,10 C27.5,10 25.8,14.0 26.4,22.7 A5.2,5.2 0 0 0 36.8,22.7 C37.4,14.0 35.6,10 43.2,10 L110.5,10 C116.7,10 115.3,14.0 115.8,33.6 A4.3,4.3 0 0 0 124.4,33.6 C124.9,14.0 123.4,10 129.7,10 L178.4,10 C184.6,10 183.2,14.0 183.6,32.9 A4.3,4.3 0 0 0 192.1,32.9 C192.6,14.0 191.2,10 197.3,10 L224.8,10 C232.9,10 231.0,14.0 231.6,20.2 A5.6,5.6 0 0 0 242.9,20.2 C243.5,14.0 241.6,10 249.7,10 L280.6,10 C288.7,10 286.8,14.0 287.4,39.9 A5.6,5.6 0 0 0 298.6,39.9 C299.2,14.0 297.4,10 305.4,10 L338.5,10 C345.5,10 343.9,14.0 344.4,35.5 A4.9,4.9 0 0 0 354.1,35.5 C354.6,14.0 353.0,10 360.0,10 L446.6,10 C455.5,10 453.4,14.0 454.1,28.2 A6.1,6.1 0 0 0 466.4,28.2 C467.1,14.0 465.0,10 473.9,10 L562.3,10 C568.4,10 567.0,14.0 567.5,42.1 A4.2,4.2 0 0 0 575.9,42.1 C576.4,14.0 575.0,10 581.1,10 L624.9,10 C631.5,10 630.0,14.0 630.5,22.5 A4.6,4.6 0 0 0 639.6,22.5 C640.1,14.0 638.6,10 645.2,10 L690.3,10 C700.3,10 698.0,14.0 698.8,21.7 A7.0,7.0 0 0 0 712.8,21.7 C713.5,14.0 711.2,10 721.3,10 L784.1,10 C793.3,10 791.2,14.0 791.9,27.3 A6.4,6.4 0 0 0 804.6,27.3 C805.3,14.0 803.2,10 812.3,10 L872.9,10 C879.1,10 877.7,14.0 878.2,21.3 A4.3,4.3 0 0 0 886.7,21.3 C887.2,14.0 885.8,10 891.9,10 L930.3,10 C939.7,10 937.6,14.0 938.3,28.6 A6.5,6.5 0 0 0 951.3,28.6 C952.0,14.0 949.8,10 959.2,10 L1004.6,10 C1013.5,10 1011.5,14.0 1012.2,29.6 A6.2,6.2 0 0 0 1024.5,29.6 C1025.2,14.0 1023.1,10 1032.0,10 L1076.5,10 C1086.5,10 1084.2,14.0 1084.9,35.3 A6.9,6.9 0 0 0 1098.8,35.3 C1099.5,14.0 1097.2,10 1107.2,10 L1148.1,10 C1156.9,10 1154.9,14.0 1155.5,31.5 A6.1,6.1 0 0 0 1167.8,31.5 C1168.5,14.0 1166.4,10 1175.3,10 L1200,10 L1200,0 Z"/></svg>
+<footer>
+  <div class="wrap in">
+    <svg class="big" role="img" aria-label="JOHNS ICE CREAM"><use href="#jic"/></svg>
+    <div class="row"><span>Cookieboy &amp; Sugiyama Farm — Tokyo</span><span>© JOHNS ICE CREAM</span></div>
+  </div>
+</footer>
+
+
+
+<script>
+(function(){
+var NS='http://www.w3.org/2000/svg';
+var FL=[
+ {id:'black',en:'Black chocolate',ja:'ブラックチョコレート 竹炭入り',c:'#2a2625',add:50,inc:[['sparkle','#c9c1bb']]},
+ {id:'jersey',en:'Jersey milk with rice cake',ja:'ジャージーミルク 餅入り',c:'#f3eedf',add:0,inc:[['chunk','#fdfaf2','#e0d6bb'],['speck','#b9ad8c']]},
+ {id:'caramel',en:'Burnt caramel nuts',ja:'焦がしキャラメルナッツ',c:'#dba66d',add:0,inc:[['swirl','#6a2e14'],['chunk','#a86f36','#7a4a1e']]},
+ {id:'fig',en:'Fig & Gorgonzola',ja:'イチジク ゴルゴンゾーラ',c:'#ebd2be',add:50,inc:[['speck','#7a4a32'],['chunk','#c68c52','#9a6234']]},
+ {id:'truffle',en:'Truffle butter honey',ja:'トリュフバターハニー',c:'#ebe5d8',add:100,inc:[['swirl','#e0b14a'],['speck','#2a2626']]},
+ {id:'mint',en:'Rainbow Chocolate Mint',ja:'レインボーチョコレートミント',c:'#9fe0cc',add:50,inc:[['chunk','#3a2219','#24140e'],['rainbow']]},
+ {id:'rumcherry',en:'Rum Cherry Chocolate Chips',ja:'ラムチェリー チョコチップ',c:'#e84a62',add:50,inc:[['swirl','#5c0f20'],['chips','#2a1b18','#f5eee0']]},
+ {id:'hazel',en:'Hazelnut & Strawberry Pie',ja:'ヘーゼルナッツ & ストロベリーパイ',c:'#d9b48f',add:50,inc:[['swirl','#d2334c'],['chunk','#ecd09a','#c9a465']]},
+ {id:'chestnut',en:'Chestnut & Cardamom',ja:'栗 & カルダモン',c:'#e7cca2',add:50,inc:[['chunk','#8c5a2a','#6a4220'],['speck','#6f6a3c']]},
+ {id:'blueberry',en:'Blueberry, Dark Chocolate Chip & Balsamic',ja:'ブルーベリー ダークチョコチップ & バルサミコ',c:'#b38abd',add:50,inc:[['swirl','#3a1240'],['chips','#2a1b18']]},
+ {id:'strawberry',en:'Strawberry soy milk yogurt',ja:'ストロベリー豆乳ヨーグルト',c:'#f2b6c5',add:0,vg:1,inc:[['speck','#c2385a']]},
+ {id:'banana',en:'Deep Banana Maple',ja:'完熟バナナ & メープル',c:'#f1d68f',add:0,vg:1,inc:[['swirl','#a5622a'],['speck','#5a3a1a']]}
+];
+FL.forEach(function(f){f.shop='nm';});
+[
+ {id:'sb-jersey',en:'Jersey milk',ja:'ジャージーミルク',c:'#f6f1de',inc:[['speck','#d6cba8']]},
+ {id:'sb-cookie',en:'Cookie & cream',ja:'クッキー & クリーム',c:'#f4f2ed',inc:[['chunk','#1f1b1a','#111111'],['speck','#2a2625']]},
+ {id:'sb-belgian',en:'Belgian chocolate',ja:'ベルギーチョコレート',c:'#8c5231',inc:[['swirl','#5e3119'],['speck','#4a2612']]},
+ {id:'sb-caramel',en:'Caramel',ja:'キャラメル',c:'#ddac5f',inc:[['chunk','#c08035','#9a5f22']]},
+ {id:'sb-latte',en:'Caffe latte',ja:'カフェラテ',c:'#ca8f58',inc:[['speck','#8a5530'],['chunk','#b8773f','#94592a']]},
+ {id:'sb-peanut',en:'Peanut butter',ja:'ピーナッツバター',c:'#edc679',inc:[['chunk','#d9a24c','#b88435']]},
+ {id:'sb-blueberry',en:'Blueberry yogurt',ja:'ブルーベリーヨーグルト',c:'#ba71a0',inc:[['speck','#5a1f4f'],['speck','#7a2d66']]},
+ {id:'sb-strawberry',en:'Strawberry',ja:'ストロベリー',c:'#eb8b8b',inc:[['chunk','#cc3f4c','#a8303b']]},
+ {id:'sb-coconut',en:'Coconut pine',ja:'ココナッツパイン',c:'#f5f1e4',inc:[['chunk','#f1d77c','#dcbb55'],['speck','#d9d0b4']]},
+ {id:'sb-mint',en:'Chocolate mint',ja:'チョコミント',c:'#73caab',inc:[['chips','#2a1b18']]}
+].forEach(function(f){f.shop='sb';f.add=0;FL.push(f);});
+var FM={};FL.forEach(function(f){FM[f.id]=f;});
+var TOPS=[{id:'spr',en:'Sprinkles',ja:'スプリンクル'},{id:'balls',en:'Chocolate balls',ja:'チョコボール'},{id:'cookie',en:'Iced cookie',ja:'アイシングクッキー'},{id:'sauce',en:'Chocolate sauce',ja:'チョコソース'}];
+var SHOPS={
+ nm:{hash:'nakameguro',en:'Nakameguro',ja:'中目黒',date:'10/2',base:{1:850,2:1550,3:2000},top:650,def:['black','rumcherry'],presets:[
+  {en:'Black × Red',ja:'黒 × 赤',f:['black','rumcherry']},
+  {en:'Black × Yellow',ja:'黒 × 黄',f:['black','banana']},
+  {en:'Purple × White',ja:'紫 × 白',f:['jersey','blueberry']},
+  {en:'Black × Pink × Mint',ja:'黒 × ピンク × ミント',f:['black','strawberry','mint']},
+  {en:'Cream × Caramel',ja:'クリーム × キャラメル',f:['truffle','caramel']}]},
+ sb:{hash:'shibuya109',en:'Shibuya109',ja:'SHIBUYA109',date:'10/6',base:{1:680,2:980,3:1230},top:0,def:['sb-strawberry','sb-mint'],presets:[
+  {en:'Pink × Mint',ja:'ピンク × ミント',f:['sb-strawberry','sb-mint']},
+  {en:'Brown × White',ja:'茶 × 白',f:['sb-jersey','sb-belgian']},
+  {en:'Purple × Yellow',ja:'紫 × 黄',f:['sb-peanut','sb-blueberry']},
+  {en:'Black-white × Pink',ja:'白黒 × ピンク',f:['sb-cookie','sb-strawberry']},
+  {en:'Mint × White × Brown',ja:'ミント × 白 × 茶',f:['sb-belgian','sb-coconut','sb-mint']}]}
+};
+var st={shop:'nm',z:2,sel:['black','rumcherry',null],act:1,cont:'cone',tops:{spr:1},fresh:-1};
+var lang='ja';
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+var $=function(id){return document.getElementById(id);};
+function SH(){return SHOPS[st.shop];}
+function curFL(){return FL.filter(function(f){return f.shop===st.shop;});}
+function L(o){return lang==='en'?o.en:o.ja;}
+function yen(n){return '¥'+n.toLocaleString('en-US');}
+function el(t,a,p){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;}
+function rng(seed){var s=seed%2147483647;if(s<=0)s+=2147483646;return function(){s=s*16807%2147483647;return (s-1)/2147483646;};}
+function hash(str){var h=7;for(var i=0;i<str.length;i++)h=(h*31+str.charCodeAt(i))|0;return Math.abs(h)+1;}
+
+/* ---------- scoop drawing (local units: radius 58) ---------- */
+var R=58,K=1.36,uid=0;
+var BUMPS=[];for(var b=0;b<9;b++)BUMPS.push([-56+b*14,38+Math.cos(b*1.7)*3,12+(b%2)*1.5]);
+function shape(p,f,i,isTop,tops){
+  var cid='cl'+(uid++);
+  var cp=el('clipPath',{id:cid},p);
+  el('circle',{cx:0,cy:0,r:R},cp);
+  BUMPS.forEach(function(q){el('circle',{cx:q[0],cy:q[1],r:q[2]},cp);});
+  var body=el('g',{fill:f.c},p);
+  el('circle',{cx:0,cy:0,r:R},body);
+  BUMPS.forEach(function(q){el('circle',{cx:q[0],cy:q[1],r:q[2]},body);});
+  var inner=el('g',{'clip-path':'url(#'+cid+')'},p);
+  var r=rng(hash(f.id)+i*97);
+  f.inc.forEach(function(inc){incl(inner,inc,r);});
+  if(isTop&&tops.sauce){
+    el('path',{d:'M-72,-80H72V-14c-6,-2 -9,6 -11,16c-2,9 -7,9 -8,0c-1,-10 -5,-14 -11,-11c-5,3 -6,12 -7,26c-1,9 -7,9 -8,0c-1,-14 -4,-22 -11,-22c-6,0 -8,8 -9,14c-1,6 -6,6 -7,0c-1,-8 -4,-12 -9,-10c-5,2 -7,10 -8,18c-1,6 -6,6 -7,0c-1,-10 -2,-16 -8,-18Z',fill:'#3b2016'},inner);
+    el('path',{d:'M-34,-44c10,-8 24,-10 34,-8',stroke:'#fff','stroke-opacity':.3,'stroke-width':3,fill:'none','stroke-linecap':'round'},inner);
+  }
+  el('rect',{x:-72,y:-72,width:144,height:134,fill:'url(#shade)'},inner);
+  if(isTop&&tops.spr){
+    var rs=rng(4242),cols=['#ff4f8b','#ffd23f','#3ec7ff','#7ce38b','#ffffff','#b48cff','#ff8a3d'];
+    for(var k=0;k<28;k++){var a=Math.PI*(1.06+rs()*0.88),d=16+rs()*38,x=Math.cos(a)*d,y=Math.sin(a)*d*0.9+4;
+      el('rect',{x:x-5,y:y-1.7,width:10,height:3.4,rx:1.7,fill:cols[k%cols.length],transform:'rotate('+(rs()*180)+' '+x+' '+y+')'},p);}
+  }
+}
+function incl(p,inc,r){
+  var t=inc[0],k;
+  function pt(){var a=r()*Math.PI*2,d=Math.sqrt(r())*60;return [Math.cos(a)*d,Math.sin(a)*d+6];}
+  if(t==='speck'){for(k=0;k<26;k++){var q=pt();el('circle',{cx:q[0],cy:q[1],r:.9+r()*1.4,fill:inc[1],opacity:.8},p);}}
+  else if(t==='sparkle'){for(k=0;k<70;k++){var q2=pt();el('circle',{cx:q2[0],cy:q2[1],r:.5+r()*.9,fill:inc[1],opacity:.35+r()*.4},p);}}
+  else if(t==='chunk'){for(k=0;k<9;k++){var q3=pt(),s=6+r()*7;el('rect',{x:q3[0]-s/2,y:q3[1]-s/2,width:s,height:s*(.7+r()*.5),rx:2.5,fill:inc[1],stroke:inc[2]||'none','stroke-width':1.2,transform:'rotate('+(r()*90)+' '+q3[0]+' '+q3[1]+')'},p);}}
+  else if(t==='chips'){for(k=0;k<12;k++){var q4=pt();el('circle',{cx:q4[0],cy:q4[1],r:3+r()*2.5,fill:(inc[2]&&k%3===0)?inc[2]:inc[1]},p);}}
+  else if(t==='rainbow'){var c=['#ff5b8a','#ffd23f','#45c8ff','#8be36f','#b48cff'];for(k=0;k<16;k++){var q5=pt();el('rect',{x:q5[0]-3,y:q5[1]-1.2,width:6,height:2.4,rx:1.2,fill:c[k%5],transform:'rotate('+(r()*180)+' '+q5[0]+' '+q5[1]+')'},p);}}
+  else if(t==='swirl'){for(k=0;k<2;k++){var y0=-30+k*34+r()*10;el('path',{d:'M-72,'+y0+' C-40,'+(y0-22)+' -20,'+(y0+24)+' 6,'+(y0+2)+' S50,'+(y0-18)+' 74,'+(y0+6),stroke:inc[1],'stroke-width':5+r()*4,fill:'none','stroke-linecap':'round',opacity:.88},p);}}
+}
+function scoop(parent,f,cx,cy,i,isTop,tops,anim){
+  var outer=el('g',{transform:'translate('+cx+' '+cy+')'},parent);
+  var d=el('g',{'class':anim?'dropin':''},outer);
+  var s=el('g',{transform:'scale('+K+')'},d);
+  shape(s,f,i,isTop,tops);
+  return outer;
+}
+function mini(f,w,h){var svg=el('svg',{viewBox:'-74 -64 148 132',width:w,height:h,'aria-hidden':'true'});shape(svg,f,0,false,{});return svg;}
+function cookie(p,x,y){
+  var g=el('g',{transform:'translate('+x+' '+y+') rotate(-14) scale(1.3)'},p);
+  el('rect',{x:-4,y:10,width:8,height:64,rx:3,fill:'#e9c78f'},g);
+  el('path',{d:'M0,26C-34,6 -40,-24 -20,-34C-8,-40 0,-30 0,-24C0,-30 8,-40 20,-34C40,-24 34,6 0,26Z',fill:'#e8b779'},g);
+  el('path',{d:'M0,20C-28,3 -33,-21 -18,-29C-8,-34 -1,-26 0,-19C1,-26 8,-34 18,-29C33,-21 28,3 0,20Z',fill:'#f27a9a'},g);
+  el('text',{x:0,y:2,'text-anchor':'middle','font-size':17,'font-weight':900,fill:'#43c2c9','font-family':'Zen Maru Gothic, sans-serif'},g).textContent='愛';
+  el('circle',{cx:-14,cy:-14,r:1.6,fill:'#ffe37a'},g);el('circle',{cx:13,cy:-10,r:1.6,fill:'#ffe37a'},g);
+}
+function meringue(p,x,y){
+  var g=el('g',{transform:'translate('+x+' '+y+') rotate(18) scale(1.3)'},p);
+  [[0,10,22,13,'#d9c9ec'],[0,-2,18,11,'#ece2f6'],[0,-13,12,8,'#f6f0fb']].forEach(function(e){el('ellipse',{cx:e[0],cy:e[1],rx:e[2],ry:e[3],fill:e[4],stroke:'#fff','stroke-width':2,'stroke-opacity':.8},g);});
+  el('path',{d:'M0,-20 q4,-6 1,-12',stroke:'#f6f0fb','stroke-width':5,'stroke-linecap':'round',fill:'none'},g);
+}
+function ball(p,x,y,c){el('circle',{cx:x,cy:y,r:9,fill:c},p);el('circle',{cx:x-3,cy:y-3.2,r:2.6,fill:'#fff',opacity:.6},p);}
+
+var YC=[204,94,-16], YU=[250,140,30];
+function render(svgRoot,s){
+  var stack=svgRoot.querySelector('#stack');
+  while(stack.firstChild)stack.removeChild(stack.firstChild);
+  var cone=s.cont==='cone',Y=cone?YC:YU,n=s.z,Rk=R*K;
+  if(s.tops.cookie)cookie(stack,112,Y[n-1]-Rk-8);
+  if(cone){
+    el('path',{d:'M74,248 L226,248 L154,424 Q150,433 146,424 Z',fill:'url(#waffle)',stroke:'var(--coneLine)','stroke-width':1.5,'stroke-linejoin':'round'},stack);
+    el('path',{d:'M94.5,298 L205.5,298 L154,424 Q150,433 146,424 Z',fill:'#121212',stroke:'var(--coneLine)','stroke-width':1.2,'stroke-linejoin':'round'},stack);
+    el('path',{d:'M154,424 L226,248 L198,248 Z',fill:'#000',opacity:.22},stack);
+    var lg=el('g',{transform:'translate(150 312) rotate(90)'},stack);
+    var u1=el('use',{href:'#jicJ',x:0,y:-13.2,width:50,height:12.4},lg);u1.style.color='#ffffff';
+    var u2=el('use',{href:'#jicIC',x:0,y:0.8,width:78,height:12.2},lg);u2.style.color='#ffffff';
+    el('rect',{x:66,y:234,width:168,height:22,rx:11,fill:'var(--coneHi)',stroke:'var(--coneLine)','stroke-width':1.2},stack);
+  }else{
+    el('ellipse',{cx:150,cy:300,rx:92,ry:13,fill:'var(--cupIn)'},stack);
+  }
+  for(var i=0;i<n;i++){
+    var f=FM[s.sel[i]],cx=150+(i===1?-3:i===2?2:0);
+    var host=stack;
+    if(i===0&&!cone){var cid='cupclip'+(uid++);var cp=el('clipPath',{id:cid},stack);el('rect',{x:-200,y:-400,width:700,height:704},cp);host=el('g',{'clip-path':'url(#'+cid+')'},stack);}
+    if(f)scoop(host,f,cx,Y[i],i,i===n-1,s.tops,i===s.fresh&&!reduce);
+    else{var gg=el('g',{transform:'translate('+cx+' '+Y[i]+')'},host);
+      el('circle',{cx:0,cy:0,r:Rk-4,fill:'var(--card)','fill-opacity':.55,stroke:'var(--mute)','stroke-width':2.5,'stroke-dasharray':'2 9','stroke-linecap':'round'},gg);
+      el('text',{x:0,y:12,'text-anchor':'middle','font-size':34,'font-style':'italic',fill:'var(--mute)','font-family':'Fraunces, Georgia, serif'},gg).textContent=(i+1);}
+    if(i===0&&!cone){
+      el('path',{d:'M58,302 H242 L218,418 Q216,428 206,428 H94 Q84,428 82,418 Z',fill:'var(--cup)',stroke:'var(--cupLine)','stroke-width':2.4,'stroke-linejoin':'round'},stack);
+      el('path',{d:'M70,306 L88,420',stroke:'#fff','stroke-opacity':.07,'stroke-width':10,'stroke-linecap':'round'},stack);
+      el('rect',{x:53,y:294,width:194,height:13,rx:6.5,fill:'var(--cupLip)',stroke:'var(--cup)','stroke-width':2.4},stack);
+      [['#jicJ',98,320,104,25.8],['#jicI',123.5,349,53,26.1],['#jicC',94,378,112,26.2]].forEach(function(w){var u=el('use',{href:w[0],x:w[1],y:w[2],width:w[3],height:w[4]},stack);u.style.color='#ffffff';});
+    }
+  }
+  if(s.tops.mer){var mi=Math.max(0,n-2);if(FM[s.sel[mi]])meringue(stack,150+Rk*0.92,Y[mi]-4);}
+  if(s.tops.balls){var bo=[[-60,14],[52,30],[-28,48],[62,-20]],bc=['#2346ff','#e8262a','#2346ff','#e8262a'];
+    for(var j=0;j<Math.min(n*2,4);j++){var yi=Math.min(n-1,Math.floor(j/2));if(FM[s.sel[yi]])ball(stack,150+bo[j][0],Y[yi]+bo[j][1],bc[j]);}}
+}
+/* framing: zoom so the ice cream fills the stage */
+var AR=0.8,vbCur=null;
+function targetVB(s){var Y=s.cont==='cone'?YC:YU;var top=Y[s.z-1]-R*K-(s.tops.cookie?118:30)-58,bottom=450,h=bottom-top,w=Math.max(h*AR,290);h=w/AR;top=bottom-h;return [150-w/2,top,w,h];}
+function setVB(t){var svg=$('stage');cancelAnimationFrame(setVB.raf);
+  if(!vbCur||reduce){vbCur=t;svg.setAttribute('viewBox',t.join(' '));return;}
+  var from=vbCur.slice(),t0=performance.now();
+  (function step(now){var p=Math.min(1,Math.max(0,(now-t0)/520)),e=1-Math.pow(1-p,3);
+    vbCur=from.map(function(v,i){return v+(t[i]-v)*e;});
+    svg.setAttribute('viewBox',vbCur.map(function(v){return v.toFixed(2);}).join(' '));
+    if(p<1)setVB.raf=requestAnimationFrame(step);})(t0);}
+
+/* ---------- UI ---------- */
+function filled(){var c=0;for(var i=0;i<st.z;i++)if(st.sel[i])c++;return c;}
+function anyTop(){for(var k in st.tops)if(st.tops[k])return true;return false;}
+function sizeName(){return (lang==='en'?['Single','Double','Triple']:['シングル','ダブル','トリプル'])[st.z-1];}
+function price(){var B=SH().base,p=B[st.z],lines=[[sizeName(),B[st.z]]];
+  for(var i=0;i<st.z;i++){var f=FM[st.sel[i]];if(f&&f.add){p+=f.add;lines.push([f.en,f.add]);}}
+  if(anyTop()){p+=SH().top;lines.push([lang==='en'?'Toppings':'トッピング',SH().top]);}
+  return {total:p,lines:lines};}
+function posName(i){if(st.z===1)return lang==='en'?'Scoop':'ひとつ';
+  var a=lang==='en'?['Bottom','Middle','Top']:['した','まんなか','うえ'];return st.z===2?(i===0?a[0]:a[2]):a[i];}
+function drawSlots(){
+  var ol=$('slots');ol.textContent='';
+  for(var i=st.z-1;i>=0;i--){(function(i){
+    var f=FM[st.sel[i]];
+    var li=document.createElement('li');li.className='slot'+(i===st.act?' act':'');li.tabIndex=0;
+    li.setAttribute('aria-label',posName(i)+': '+(f?f.en:'empty'));
+    li.innerHTML='<span class="sw"></span><span class="nm"><span class="pos"></span><b></b><small></small></span><span class="ops"><button type="button" data-a="up" aria-label="Move up">↑</button><button type="button" data-a="dn" aria-label="Move down">↓</button><button type="button" data-a="rm" aria-label="Remove">×</button></span>';
+    li.querySelector('.pos').textContent=posName(i);
+    var sw=li.querySelector('.sw');
+    if(f)sw.appendChild(mini(f,44,40));else{var e=document.createElement('span');e.className='empty';sw.appendChild(e);}
+    li.querySelector('b').textContent=f?f.en:(lang==='en'?'Choose a flavor':'フレーバーをえらぶ');
+    li.querySelector('small').textContent=f?(f.ja+(f.add?'  +¥'+f.add:'')):(i===st.act?(lang==='en'?'Tap a flavor below':'下からタップしてね'):'');
+    var ops=li.querySelectorAll('.ops button');
+    ops[0].disabled=i===st.z-1;ops[1].disabled=i===0;ops[2].disabled=!f;
+    li.addEventListener('click',function(e){var bt=e.target.closest('button');
+      if(bt){e.stopPropagation();var a=bt.dataset.a;
+        if(a==='up'&&i<st.z-1)swap(i,i+1);else if(a==='dn'&&i>0)swap(i,i-1);else if(a==='rm'){st.sel[i]=null;st.act=i;}
+        update();return;}
+      st.act=i;update();});
+    li.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target===li){st.act=i;update();}});
+    ol.appendChild(li);})(i);}
+}
+function swap(a,b){var t=st.sel[a];st.sel[a]=st.sel[b];st.sel[b]=t;st.act=b;}
+var chipEls={};
+function buildChips(){
+  var box=$('fls');box.textContent='';chipEls={};
+  curFL().forEach(function(f){
+    var b=document.createElement('button');b.type='button';b.className='fl';
+    b.appendChild(mini(f,92,84));
+    var nm=document.createElement('b');nm.textContent=f.en;b.appendChild(nm);
+    var jp=document.createElement('small');jp.textContent=f.ja;b.appendChild(jp);
+    var pr=document.createElement('span');pr.className='pr num'+(f.vg?' vg':'');
+    pr.textContent=f.vg?'Vegan':(f.add?'+¥'+f.add:(lang==='en'?'no extra':'追加なし'));
+    var anyAdd=curFL().some(function(x){return x.add>0;});if(f.vg||anyAdd)b.appendChild(pr);
+    var h=document.createElement('span');h.className='heart';h.textContent='♥';h.hidden=true;b.appendChild(h);
+    b.setAttribute('aria-label',f.en+' '+f.ja);
+    b.addEventListener('click',function(){
+      st.sel[st.act]=f.id;st.fresh=st.act;
+      for(var k=0;k<st.z;k++){if(!st.sel[k]){st.act=k;break;}}
+      update();
+    });
+    chipEls[f.id]=b;box.appendChild(b);
+  });
+}
+function drawPresets(){
+  var box=$('presets');box.textContent='';
+  SH().presets.forEach(function(p){
+    var b=document.createElement('button');b.type='button';
+    var d=document.createElement('span');d.className='dots';
+    p.f.slice().reverse().forEach(function(id){var i=document.createElement('i');i.style.background=FM[id].c;d.appendChild(i);});
+    b.appendChild(d);b.appendChild(document.createTextNode(L(p)));
+    b.addEventListener('click',function(){st.z=p.f.length;st.sel=p.f.concat([null,null,null]).slice(0,3);st.act=st.z-1;st.fresh=st.z-1;update();});
+    box.appendChild(b);
+  });
+}
+var TOPICON={
+ spr:'<svg viewBox="0 0 24 24"><rect x="3" y="6" width="8" height="3" rx="1.5" fill="#ff4f8b" transform="rotate(-20 7 7)"/><rect x="12" y="4" width="8" height="3" rx="1.5" fill="#3ec7ff" transform="rotate(30 16 5)"/><rect x="6" y="14" width="8" height="3" rx="1.5" fill="#ffd23f" transform="rotate(10 10 15)"/><rect x="14" y="15" width="7" height="3" rx="1.5" fill="#7ce38b" transform="rotate(-35 17 16)"/></svg>',
+ balls:'<svg viewBox="0 0 24 24"><circle cx="8" cy="13" r="5.5" fill="#2346ff"/><circle cx="16" cy="10" r="5.5" fill="#e8262a"/></svg>',
+ mer:'<svg viewBox="0 0 24 24"><ellipse cx="12" cy="17" rx="9" ry="5" fill="#d9c9ec"/><ellipse cx="12" cy="11" rx="7" ry="4.5" fill="#ece2f6"/><ellipse cx="12" cy="6" rx="4" ry="3" fill="#f6f0fb" stroke="#d9c9ec"/></svg>',
+ cookie:'<svg viewBox="0 0 24 24"><path d="M12 21C3 15 2 7 7 5c3-1 5 1 5 3 0-2 2-4 5-3 5 2 4 10-5 16z" fill="#f27a9a"/></svg>',
+ sauce:'<svg viewBox="0 0 24 24"><path d="M3 5h18v5c-2 0-2 6-4 6s-2-4-4-4-2 7-4 7-2-6-3-6-3 2-3 0z" fill="#3b2016"/></svg>'
+};
+function drawTops(){
+  var box=$('tops');box.textContent='';
+  TOPS.forEach(function(t){var b=document.createElement('button');b.type='button';b.id='tp-'+t.id;
+    b.setAttribute('aria-pressed',st.tops[t.id]?'true':'false');
+    b.innerHTML=TOPICON[t.id];b.appendChild(document.createTextNode(L(t)));
+    b.addEventListener('click',function(){st.tops[t.id]=st.tops[t.id]?0:1;update();});
+    box.appendChild(b);});
+}
+function shopUI(){
+  var s=SH();
+  document.querySelectorAll('.shopsw button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.s===st.shop?'true':'false');});
+  document.querySelectorAll('[data-only]').forEach(function(e){e.hidden=e.dataset.only!==st.shop;});
+  [1,2,3].forEach(function(z){$('sz'+z).querySelector('small').textContent=yen(s.base[z]);});
+  $('stkPrice').textContent=s.top?yen(s.top):'FREE';
+  $('topPrice').textContent=s.top?'+'+yen(s.top):'FREE';
+  $('stTag').textContent=s.en;
+}
+function update(){
+  shopUI();
+  document.querySelectorAll('#sizeSeg .opt').forEach(function(b){b.setAttribute('aria-pressed',+b.dataset.z===st.z?'true':'false');});
+  document.querySelectorAll('#contSeg .opt').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.c===st.cont?'true':'false');});
+  render($('stage'),st);st.fresh=-1;
+  setVB(targetVB(st));
+  drawSlots();drawTops();
+  var used=st.sel.slice(0,st.z);
+  curFL().forEach(function(f){var on=used.indexOf(f.id)>-1;chipEls[f.id].classList.toggle('used',on);chipEls[f.id].querySelector('.heart').hidden=!on;});
+  var pr=price(),ln=$('lines');ln.textContent='';
+  pr.lines.forEach(function(l,ix){var d=document.createElement('div');d.innerHTML='<span></span><span></span>';d.firstChild.textContent=l[0];d.lastChild.textContent=l[1]===0?'FREE':(ix?'+':'')+yen(l[1]);ln.appendChild(d);});
+  $('total').textContent=yen(pr.total);$('stPrice').textContent=yen(pr.total);
+  var left=st.z-filled();
+  $('warn').classList.toggle('need',left>0);
+  $('warn').textContent=left>0?(lang==='en'?'Choose '+left+' more flavor'+(left>1?'s':'')+'.':'あと'+left+'つ、フレーバーを選んでね。'):(lang==='en'?'Prices from the '+SH().en+' menu.':SH().ja+'店のメニューの価格です。');
+}
+document.querySelectorAll('#sizeSeg .opt').forEach(function(b){b.addEventListener('click',function(){st.z=+b.dataset.z;if(st.act>=st.z)st.act=st.z-1;
+  for(var k=0;k<st.z;k++){if(!st.sel[k]){st.act=k;break;}}update();});});
+document.querySelectorAll('#contSeg .opt').forEach(function(b){b.addEventListener('click',function(){st.cont=b.dataset.c;update();});});
+
+/* scroll reveal */
+(function(){
+  if(!('IntersectionObserver' in window)||reduce)return;
+  var sel='.stagebox,.blk,.sum,.sechead,.box,.rules p,footer .in';
+  var vh=window.innerHeight||800;
+  var io=new IntersectionObserver(function(a){a.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.12});
+  document.querySelectorAll(sel).forEach(function(e,i){
+    if(e.getBoundingClientRect().top<vh*0.92)return;   /* already on screen: leave it visible */
+    e.classList.add('rv');io.observe(e);
+  });
+})();
+
+/* drag to wobble */
+(function(){var svg=$('stage'),sway=$('sway'),x0=null;
+  function set(a){sway.setAttribute('transform','rotate('+a.toFixed(2)+' 150 428)');}
+  svg.addEventListener('pointerdown',function(e){x0=e.clientX;svg.classList.add('drag');try{svg.setPointerCapture(e.pointerId);}catch(_){}});
+  svg.addEventListener('pointermove',function(e){if(x0===null)return;set(Math.max(-16,Math.min(16,(e.clientX-x0)/6)));});
+  function end(){if(x0===null)return;x0=null;svg.classList.remove('drag');set(0);}
+  svg.addEventListener('pointerup',end);svg.addEventListener('pointercancel',end);svg.addEventListener('pointerleave',end);
+})();
+
+/* order card */
+var lastFocus=null;
+$('mk').addEventListener('click',function(){
+  var left=st.z-filled();
+  if(left>0){for(var k=0;k<st.z;k++){if(!st.sel[k]){st.act=k;break;}}update();
+    $('slots').scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});return;}
+  lastFocus=document.activeElement;
+  var vis=$('ocVis');vis.querySelectorAll('svg').forEach(function(n){n.remove();});
+  var c=$('stage').cloneNode(true);c.removeAttribute('id');c.setAttribute('aria-hidden','true');
+  c.querySelectorAll('#stack,#sway').forEach(function(n){n.removeAttribute('id');});
+  c.querySelectorAll('.dropin').forEach(function(n){n.removeAttribute('class');});
+  vis.appendChild(c);
+  var ol=$('ocList');ol.textContent='';
+  function row(a,b){var li=document.createElement('li');li.innerHTML='<span></span><span></span>';li.firstChild.textContent=a;li.lastChild.textContent=b;ol.appendChild(li);}
+  row(lang==='en'?SH().en:SH().ja+'店','');
+  row(sizeName()+' · '+(st.cont==='cone'?(lang==='en'?'Black cone':'ブラックコーン'):(lang==='en'?'Cup':'カップ')),yen(SH().base[st.z]));
+  for(var i=st.z-1;i>=0;i--){var f=FM[st.sel[i]];row(posName(i)+' — '+f.en,f.add?'+¥'+f.add:'—');}
+  if(anyTop()){row((lang==='en'?'Toppings: ':'トッピング：')+TOPS.filter(function(t){return st.tops[t.id];}).map(L).join('、'),SH().top?'+'+yen(SH().top):'FREE');}
+  $('ocTotal').textContent=yen(price().total);
+  $('ocNo').textContent='No. '+String(hash(JSON.stringify(st))%9000+1000);
+  $('toast').hidden=true;$('ov').hidden=false;
+  $('ov').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});$('ocClose').focus({preventScroll:true});
+});
+function closeOv(){$('ov').hidden=true;if(lastFocus)lastFocus.focus({preventScroll:true});$('mk').scrollIntoView({block:'center'});}
+$('ocClose').addEventListener('click',closeOv);
+$('ov').addEventListener('click',function(e){if(e.target===$('ov'))closeOv();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('ov').hidden)closeOv();});
+function toast(m){var t=$('toast');t.textContent=m;t.hidden=false;}
+$('ocCopy').addEventListener('click',function(){
+  var txt='JOHNS ICE CREAM '+$('ocNo').textContent+'\n'+Array.prototype.map.call($('ocList').children,function(li){return li.firstChild.textContent+'  '+li.lastChild.textContent;}).join('\n')+'\nTOTAL '+$('ocTotal').textContent;
+  var fail=function(){toast(lang==='en'?'Copy isn’t available here. Take a screenshot instead.':'コピーできませんでした。スクリーンショットを使ってね。');};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(function(){toast(lang==='en'?'Copied':'コピーしました');},fail);else fail();
+});
+
+/* shops */
+function setShop(k,noAnim){
+  if(!SHOPS[k])return;
+  st.shop=k;var d=SHOPS[k].def;
+  st.sel=[null,null,null];for(var i=0;i<st.z;i++)st.sel[i]=d[i]||null;
+  st.act=st.z-1;for(var j=0;j<st.z;j++){if(!st.sel[j]){st.act=j;break;}}
+  st.fresh=noAnim?-1:Math.min(st.z,d.length)-1;
+  drawPresets();buildChips();update();
+}
+document.querySelectorAll('.shopsw button').forEach(function(b){b.addEventListener('click',function(){if(b.dataset.s!==st.shop)setShop(b.dataset.s);});});
+function fromHash(scroll){var h=(location.hash||'').slice(1).toLowerCase(),k=null;
+  for(var s in SHOPS)if(SHOPS[s].hash===h)k=s;
+  if(!k)return false;
+  if(k!==st.shop)setShop(k,!scroll);
+  if(scroll!==false)$('lab').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  return true;}
+window.addEventListener('hashchange',function(){fromHash(true);});
+function buildFlist(){var ul=$('flist109');ul.textContent='';
+  FL.filter(function(f){return f.shop==='sb';}).forEach(function(f){
+    var li=document.createElement('li');li.appendChild(mini(f,38,34));
+    var s=document.createElement('span');s.innerHTML='<b></b><small></small>';s.firstChild.textContent=f.en;s.lastChild.textContent=f.ja;li.appendChild(s);ul.appendChild(li);});}
+
+/* language */
+function setLang(l){lang=l;document.documentElement.lang=l;
+  document.querySelectorAll('.t').forEach(function(n){if(n.dataset.ja===undefined)n.dataset.ja=n.innerHTML;n.innerHTML=l==='en'?n.dataset.en:n.dataset.ja;});
+  document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===l?'true':'false');});
+  drawPresets();buildChips();buildFlist();update();
+  try{localStorage.setItem('jic-lang',l);}catch(_){}}
+document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.l);});});
+var saved=null;try{saved=localStorage.getItem('jic-lang');}catch(_){}
+document.documentElement.lang='ja';
+var startShop=null;(function(){var h=(location.hash||'').slice(1).toLowerCase();for(var s in SHOPS)if(SHOPS[s].hash===h)startShop=s;})();
+if(startShop){st.shop=startShop;var d0=SHOPS[startShop].def;st.sel=d0.concat([null,null,null]).slice(0,3);}
+drawPresets();buildChips();buildFlist();
+st.fresh=1;update();
+if(startShop)setTimeout(function(){$('lab').scrollIntoView({block:'start'});},60);
+if(saved==='en')setLang('en');
+})();
+</script>
+
+</body></html>
